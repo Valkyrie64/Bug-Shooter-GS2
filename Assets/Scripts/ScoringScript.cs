@@ -49,5 +49,6 @@ public class ScoringScript : MonoBehaviour
     public void ScoreUpdate(float score)
     {
         scoreNumber += score * mult;
+        timer += 10;
     }
 }

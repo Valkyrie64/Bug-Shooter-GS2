@@ -5,14 +5,10 @@ public class BulletScript : MonoBehaviour
 {
     [SerializeField] private float bulletSpeed = 10f;
     [SerializeField] SpriteRenderer rend;
-    [SerializeField] private GameObject scoreGO;
-    [SerializeField] private ScoringScript scoreScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rend = gameObject.GetComponent<SpriteRenderer>();
-        scoreGO = GameObject.FindGameObjectWithTag("ScoreManager");
-        scoreScript = scoreGO.GetComponent<ScoringScript>();
     }
 
     // Update is called once per frame
@@ -31,8 +27,6 @@ public class BulletScript : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             other.gameObject.SetActive(false);
-            scoreScript.timer += 10;
-            Destroy(other.gameObject);
             Destroy(gameObject);
         }
     }
