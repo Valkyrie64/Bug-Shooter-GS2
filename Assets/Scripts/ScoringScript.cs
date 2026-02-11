@@ -38,9 +38,13 @@ public class ScoringScript : MonoBehaviour
                 rankText.text = $"Rank: B";
                 mult = 2f;
                 break;
-            case > 40f:
+            case <= 60f:
                 rankText.text = $"Rank: A";
                 mult = 2.5f;
+                break;
+            case > 60f:
+                rankText.text = $"Rank: S";
+                mult = 3f;
                 break;
 
         }

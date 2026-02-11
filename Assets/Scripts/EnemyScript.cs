@@ -1,12 +1,29 @@
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyScript : MonoBehaviour
 {
     public ScoringScript scoreScript;
+    public EnemyFactoryScript factoryScript;
+    public SplineAnimate splineScript;
     public float scoreValue;
-    private float speed = 30f;
-    private GameObject rotatePoint;
+    private bool following;
+    private Vector3 lerpPos;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Awake()
+    {
+        following = true;
+        var scoreGO = GameObject.Find("ScoringGO");
+        scoreScript = scoreGO.GetComponent<ScoringScript>();
+        var factoryGO = GameObject.Find("EnemyFactory");
+        factoryScript = factoryGO.GetComponent<EnemyFactoryScript>();
+        splineScript = this.GetComponent<SplineAnimate>();
+    }
+
     void Start()
     {
         
@@ -15,13 +32,10 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (rotatePoint != null)
+        if (following == false)
         {
-            transform.RotateAround(rotatePoint.transform.position, Vector3.back, speed * Time.deltaTime);
-        }*/
-
-
-        
+            transform.position = Vector3.Lerp(transform.position, lerpPos, 1f * Time.deltaTime);
+        }
     }
 
     private void OnDisable()
@@ -30,9 +44,35 @@ public class EnemyScript : MonoBehaviour
         Destroy(gameObject);
     }
 
-    /*private void PathCurve()
+    public void FindPath(float offset)
     {
-        rotatePoint = new GameObject();
-        rotatePoint.transform.position = transform.position + transform.right;
-    }*/
+        splineScript.Container = factoryScript.paths[0];
+        splineScript.StartOffset = offset;
+        splineScript.Play();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("EnemySpace"))
+        {
+            splineScript.Container = null;
+            SetEnemyPositions();
+        }
+    }
+
+    public void SetEnemyPositions()
+    {
+        float spaceOffset = 0;
+        float lerpSpeed = 2f;
+        float t = Time.time * lerpSpeed;
+        var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            var enemy = enemies[i];
+            var enemyScript = enemy.GetComponent<EnemyScript>();
+            lerpPos = new Vector3(-1.16f + spaceOffset, 1.78f, 0);
+            spaceOffset += 1f;
+            enemyScript.following = false;
+        }
+    }
 }
