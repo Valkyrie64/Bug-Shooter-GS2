@@ -5,9 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - PlayerBullet
-  - Enemy
   - ScoreManager
   - EnemySpace
+  - FlyingEnemy
+  - StoppedEnemy
   layers:
   - Default
   - TransparentFX
