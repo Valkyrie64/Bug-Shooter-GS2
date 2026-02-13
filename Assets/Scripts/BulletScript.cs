@@ -24,7 +24,7 @@ public class BulletScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("FlyingEnemy") || other.CompareTag("StoppedEnemy"))
         {
             other.gameObject.SetActive(false);
             Destroy(gameObject);
