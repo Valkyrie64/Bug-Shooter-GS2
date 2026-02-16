@@ -1732,11 +1732,8 @@ MonoBehaviour:
   bullet: {fileID: 644244602692536722, guid: aa29342e205f0144f94fb2f62e834656, type: 3}
   barrel: {fileID: 1705409272}
   health: 0
-  scoreNumber: 0
-  scoreGO: {fileID: 0}
+  scoreGO: {fileID: 452447173}
   livesGO: {fileID: 0}
-  scoreText: {fileID: 0}
-  livesText: {fileID: 0}
   restartButton: {fileID: 0}
 --- !u!58 &1271575858
 CircleCollider2D:

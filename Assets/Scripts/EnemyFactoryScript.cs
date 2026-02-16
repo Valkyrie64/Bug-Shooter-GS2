@@ -48,7 +48,6 @@ public class EnemyFactoryScript : MonoBehaviour
     void LinkToPath(int path)
     {
         offsetStart = 0;
-        Debug.Log(offsetStart);
         var enemies = GameObject.FindGameObjectsWithTag("FlyingEnemy");
         for (int i = 0; i < enemies.Length; i++)
         {

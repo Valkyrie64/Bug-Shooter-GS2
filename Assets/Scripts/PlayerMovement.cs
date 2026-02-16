@@ -9,17 +9,14 @@ public class PlayerMovement : MonoBehaviour
     public GameObject bullet;
     public Transform barrel;
     public int health;
-    public int scoreNumber;
     public GameObject scoreGO;
+    private ScoringScript scoreScript;
     public GameObject livesGO;
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI livesText;
     public GameObject restartButton;
 
     void Start()
     {
-        //scoreText = scoreGO.GetComponent<TextMeshProUGUI>();
-        //livesText = livesGO.GetComponent<TextMeshProUGUI>();
+        scoreScript = scoreGO.GetComponent<ScoringScript>();
     }
     // Update is called once per frame
     void Update()
@@ -33,8 +30,6 @@ public class PlayerMovement : MonoBehaviour
             Instantiate(bullet, barrel.position, Quaternion.identity);
         }
         
-        //scoreText.text = $"Score: {scoreNumber}";
-        //livesText.text = $"Lives: {health}";
 
         if (health <= 0)
         {
@@ -43,10 +38,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("EnemyBullet"))
         {
+            scoreScript.timer -= 5f;
+            Destroy(other.gameObject);
             //health--;
             //Destroy(other.gameObject);
         }

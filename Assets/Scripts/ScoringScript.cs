@@ -23,6 +23,14 @@ public class ScoringScript : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
+        if (timer < 0f)
+        {
+            timer = 0f;
+        }
+        if (timer > 70f)
+        {
+            timer = 70f;
+        }
         //Rank Checker
         switch (timer)
         {

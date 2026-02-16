@@ -9,6 +9,7 @@ TagManager:
   - EnemySpace
   - FlyingEnemy
   - StoppedEnemy
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

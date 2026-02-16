@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
-using static UnityEngine.EventSystems.EventTrigger;
+using Random = UnityEngine.Random;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -11,8 +11,11 @@ public class EnemyScript : MonoBehaviour
     public EnemyFactoryScript factoryScript;
     public SplineAnimate splineScript;
     public float scoreValue;
+    public GameObject bullet;
     private bool following;
     private Vector3 lerpPos;
+    private float timer;
+    private float rand;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -39,6 +42,15 @@ public class EnemyScript : MonoBehaviour
         if (following == false)
         {
             transform.position = Vector3.Lerp(transform.position, lerpPos, (Time.time * 2f) * Time.deltaTime);
+        }
+
+        //Shooting Timer
+        timer += Time.deltaTime;
+        if (gameObject.tag == "StoppedEnemy" && timer >= rand)
+        {
+            rand = Random.Range(1.5f, 2.5f);
+            timer = 0;
+            Instantiate(bullet, transform.position, transform.rotation);
         }
     }
 
@@ -68,10 +80,10 @@ public class EnemyScript : MonoBehaviour
         if (collision.CompareTag("EnemySpace"))
         {
             this.gameObject.tag = "StoppedEnemy";
+            rand = Random.Range(1.5f, 3.5f);
+            timer = 0;
             splineScript.Container = null;
             factoryScript.SetEnemyPositions();
         }
     }
-
-    
 }
