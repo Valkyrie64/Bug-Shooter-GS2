@@ -5,10 +5,12 @@ public class EnemyBulletScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private float bulletSpeed = 10f;
     [SerializeField] SpriteRenderer rend;
+    [SerializeField] private GameObject target;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rend = gameObject.GetComponent<SpriteRenderer>();
+        target = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame

@@ -14,6 +14,11 @@ public class PlayerMovement : MonoBehaviour
     public GameObject livesGO;
     public GameObject restartButton;
 
+    //animation components
+    public Animator animator;
+    public bool currentShotAnim;
+    private float animateTimer;
+
     void Start()
     {
         scoreScript = scoreGO.GetComponent<ScoringScript>();
@@ -25,16 +30,42 @@ public class PlayerMovement : MonoBehaviour
         var moveV = Input.GetAxisRaw("Vertical");
         rb.linearVelocity = new Vector3(moveH * speed, moveV * speed, 0);
 
+        animateTimer += Time.deltaTime;
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             Instantiate(bullet, barrel.position, Quaternion.identity);
+            //animation
+            animateTimer = 0;
+            switch (currentShotAnim)
+            {
+                case true:
+                    animator.SetBool("LeftWing", true);
+                    animator.SetBool("RightWing", false);
+                    currentShotAnim = false;
+                    break;
+                case false:
+                    animator.SetBool("RightWing", true);
+                    animator.SetBool("LeftWing", false);
+                    currentShotAnim = true;
+                    break;
+            }
+
         }
-        
 
         if (health <= 0)
         {
             //restartButton.SetActive(true);
             //Destroy(gameObject);
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (animateTimer > 0.3f)
+        {
+            animator.SetBool("LeftWing", false);
+            animator.SetBool("RightWing", false);
         }
     }
 

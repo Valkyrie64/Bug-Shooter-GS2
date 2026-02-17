@@ -23,6 +23,7 @@ public class ScoringScript : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
+        //Rank Timer Bounds
         if (timer < 0f)
         {
             timer = 0f;

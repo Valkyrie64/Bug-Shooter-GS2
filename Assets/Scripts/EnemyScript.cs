@@ -12,10 +12,12 @@ public class EnemyScript : MonoBehaviour
     public SplineAnimate splineScript;
     public float scoreValue;
     public GameObject bullet;
+    public EnemyManagerScriptableObject enemyManager;
     private bool following;
     private Vector3 lerpPos;
-    private float timer;
+    private float attackTimer;
     private float rand;
+    private int attackPattern;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -38,20 +40,17 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        attackTimer += Time.deltaTime;
         //Moves enemies smoothly to set position
         if (following == false)
         {
             transform.position = Vector3.Lerp(transform.position, lerpPos, (Time.time * 2f) * Time.deltaTime);
+            EnemyAttack(attackPattern);
         }
-
         //Shooting Timer
-        timer += Time.deltaTime;
-        if (gameObject.tag == "StoppedEnemy" && timer >= rand)
-        {
-            rand = Random.Range(1.5f, 2.5f);
-            timer = 0;
-            Instantiate(bullet, transform.position, transform.rotation);
-        }
+        /*timer += Time.deltaTime;
+        
+        }*/
     }
 
     private void OnDisable()
@@ -66,6 +65,16 @@ public class EnemyScript : MonoBehaviour
         splineScript.Container = factoryScript.paths[path];
         splineScript.StartOffset = offset;
         splineScript.Play();
+        enemyManager.SetEnemyType(path);
+        EnemySetup(path);
+    }
+
+    public void EnemySetup(int setupVal)
+    {
+        scoreValue = enemyManager.pointsValue;
+        var spriteRend = gameObject.GetComponent<SpriteRenderer>();
+        spriteRend.sprite = enemyManager.enemySprites[setupVal];
+        attackPattern = enemyManager.attackPattern;
     }
 
     public void FindPosition(Transform posToGo)
@@ -80,10 +89,33 @@ public class EnemyScript : MonoBehaviour
         if (collision.CompareTag("EnemySpace"))
         {
             this.gameObject.tag = "StoppedEnemy";
-            rand = Random.Range(1.5f, 3.5f);
-            timer = 0;
+            rand = Random.Range(1.5f, 2.5f);
+            attackTimer = 0;
             splineScript.Container = null;
             factoryScript.SetEnemyPositions();
+        }
+    }
+
+    void EnemyAttack(int attackType)
+    {
+        switch (attackType)
+        {
+            case 1: //Shoot Straight Ahead
+                if (gameObject.tag == "StoppedEnemy" && attackTimer >= rand)
+                {
+                    rand = Random.Range(1.8f, 2.2f);
+                    attackTimer = 0;
+                    Instantiate(bullet, transform.position, transform.rotation);
+                }
+                break;
+            case 2:
+                if (gameObject.tag == "StoppedEnemy" && attackTimer >= rand)
+                {
+                    rand = Random.Range(0.8f, 1.2f);
+                    attackTimer = 0;
+                    Instantiate(bullet, transform.position, transform.rotation);
+                }
+                break;
         }
     }
 }

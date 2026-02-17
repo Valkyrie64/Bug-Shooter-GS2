@@ -35,13 +35,13 @@ public class EnemyFactoryScript : MonoBehaviour
         }
     }
 
-    void SpawnEnemies(int strtPath)
+    void SpawnEnemies(int waveNO)
     {
         for (int i = 0; i < 7; i++)
         {
             Instantiate(enemyGO, new Vector3(0f, -5f, 0f), Quaternion.identity);
         }
-        LinkToPath(strtPath);
+        LinkToPath(waveNO);
     }
 
     //Tells enemies where to be on the path

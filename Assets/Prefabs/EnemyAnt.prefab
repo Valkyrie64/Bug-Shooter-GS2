@@ -181,6 +181,7 @@ MonoBehaviour:
   splineScript: {fileID: 0}
   scoreValue: 50
   bullet: {fileID: 2744354600155684608, guid: 87b9052bdfd91894eaa455a42480d8c7, type: 3}
+  enemyManager: {fileID: 11400000, guid: 35e7dccb0f1deea4e91835cd718a311b, type: 2}
 --- !u!114 &3860985996115094571
 MonoBehaviour:
   m_ObjectHideFlags: 0

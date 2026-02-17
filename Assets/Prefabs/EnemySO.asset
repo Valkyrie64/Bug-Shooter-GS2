@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3edfe339bda891042b3ffb12a480ebd7, type: 3}
+  m_Name: EnemySO
+  m_EditorClassIdentifier: 
+  enemyType: 1
+  hitPoints: 15
+  attackSpeed: 1
+  pointsValue: 15
+  enemySprites:
+  - {fileID: 1134202477111627790, guid: 8cb007fa07243a3458cb5accdc85b59e, type: 3}
+  - {fileID: 8538046843314217601, guid: 76d58bb718f591941948204334ae0643, type: 3}
+  - {fileID: 5138250198048281157, guid: b0472424711b6b54098be4eeea679605, type: 3}
