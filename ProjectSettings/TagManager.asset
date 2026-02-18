@@ -10,6 +10,7 @@ TagManager:
   - FlyingEnemy
   - StoppedEnemy
   - EnemyBullet
+  - TrackingBullet
   layers:
   - Default
   - TransparentFX

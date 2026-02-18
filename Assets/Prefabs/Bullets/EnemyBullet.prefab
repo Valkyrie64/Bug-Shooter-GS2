@@ -167,3 +167,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 10
   rend: {fileID: 0}
+  target: {fileID: 0}
+  playerPos: {x: 0, y: 0, z: 0}

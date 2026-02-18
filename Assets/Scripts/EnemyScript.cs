@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Splines;
 using Random = UnityEngine.Random;
@@ -105,14 +106,16 @@ public class EnemyScript : MonoBehaviour
                 {
                     rand = Random.Range(1.8f, 2.2f);
                     attackTimer = 0;
+                    bullet.tag = "EnemyBullet";
                     Instantiate(bullet, transform.position, transform.rotation);
                 }
                 break;
-            case 2:
+            case 2: //Shot Follows Player
                 if (gameObject.tag == "StoppedEnemy" && attackTimer >= rand)
                 {
                     rand = Random.Range(0.8f, 1.2f);
                     attackTimer = 0;
+                    bullet.tag = "TrackingBullet";
                     Instantiate(bullet, transform.position, transform.rotation);
                 }
                 break;
