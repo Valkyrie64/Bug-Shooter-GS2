@@ -6,11 +6,15 @@ using UnityEngine.Splines;
 public class EnemyFactoryScript : MonoBehaviour
 {
     public TimerManager timerScript;
-    public GameObject enemyGO;
+    public List<GameObject> enemyGO;
     public List<SplineContainer> paths;
-    public List<Transform> positions;
+    public List<Transform> wave1Positions;
+    public List<Transform> wave2Positions;
     public float offsetStart;
+    [SerializeField] int currentPos;
+    private int enemyCount;
     private float timerNO;
+    public bool wave1Complete;
     private bool wave2Complete;
 
     private void Awake()
@@ -20,6 +24,7 @@ public class EnemyFactoryScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        enemyCount = wave1Positions.Count;
         SpawnEnemies(0);
     }
 
@@ -28,19 +33,22 @@ public class EnemyFactoryScript : MonoBehaviour
     {
         timerNO = timerScript.currentTime;
 
-        if (timerNO < 54 && wave2Complete == false)
+        if (timerNO < 54 && wave1Complete == false)
         {
+            //currentPos = 0;
+            enemyCount = wave2Positions.Count;
             SpawnEnemies(1);
-            wave2Complete = true;
+            wave1Complete = true;
         }
     }
 
     void SpawnEnemies(int waveNO)
     {
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < enemyCount; i++)
         {
-            Instantiate(enemyGO, new Vector3(0f, -5f, 0f), Quaternion.identity);
+            Instantiate(enemyGO[waveNO], new Vector3(0f, -5f, 0f), Quaternion.identity);
         }
+        
         LinkToPath(waveNO);
     }
 
@@ -51,19 +59,18 @@ public class EnemyFactoryScript : MonoBehaviour
         var enemies = GameObject.FindGameObjectsWithTag("FlyingEnemy");
         for (int i = 0; i < enemies.Length; i++)
         {
+            switch (path)
+            {
+                case 0:
+                    enemies[i].layer = 6;
+                    break;
+                case 1:
+                    enemies[i].layer = 7;
+                    break;
+            }
             var enemyScript = enemies[i].GetComponent<EnemyScript>();
             enemyScript.FindPath(offsetStart, path);
             offsetStart += 0.05f;
-        }
-    }
-
-    public void SetEnemyPositions()
-    {
-        var enemies = GameObject.FindGameObjectsWithTag("StoppedEnemy");
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            var enemyScript = enemies[i].GetComponent<EnemyScript>();
-            enemyScript.FindPosition(positions[i]);
         }
     }
 }

@@ -36,23 +36,23 @@ public class ScoringScript : MonoBehaviour
         switch (timer)
         {
             case <= 0f:
-                rankText.text = $"Rank: D";
+                rankText.text = "Rank: D";
                 mult = 1f;
                 break;
             case <= 20f:
-                rankText.text = $"Rank: C";
+                rankText.text = "Rank: C";
                 mult = 1.5f;
                 break;
             case <= 40f:
-                rankText.text = $"Rank: B";
+                rankText.text = "Rank: B";
                 mult = 2f;
                 break;
             case <= 60f:
-                rankText.text = $"Rank: A";
+                rankText.text = "Rank: A";
                 mult = 2.5f;
                 break;
             case > 60f:
-                rankText.text = $"Rank: S";
+                rankText.text = "Rank: S";
                 mult = 3f;
                 break;
 

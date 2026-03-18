@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("EnemyBullet"))
+        if (other.CompareTag("EnemyBullet") || other.CompareTag("TrackingBullet"))
         {
             scoreScript.timer -= 5f;
             Destroy(other.gameObject);

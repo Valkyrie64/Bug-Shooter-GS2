@@ -16,6 +16,7 @@ MonoBehaviour:
   hitPoints: 15
   attackSpeed: 1
   pointsValue: 15
+  attackPattern: 2
   enemySprites:
   - {fileID: 1134202477111627790, guid: 8cb007fa07243a3458cb5accdc85b59e, type: 3}
   - {fileID: 8538046843314217601, guid: 76d58bb718f591941948204334ae0643, type: 3}

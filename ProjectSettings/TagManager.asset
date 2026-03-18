@@ -11,6 +11,8 @@ TagManager:
   - StoppedEnemy
   - EnemyBullet
   - TrackingBullet
+  - ExplosionSpace
+  - StartingEnemy
   layers:
   - Default
   - TransparentFX

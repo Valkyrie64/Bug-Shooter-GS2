@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -8,34 +9,42 @@ using Random = UnityEngine.Random;
 
 public class EnemyScript : MonoBehaviour
 {
-    public ScoringScript scoreScript;
-    public EnemyFactoryScript factoryScript;
-    public SplineAnimate splineScript;
+    [Header("Enemy Info")] public float health;
     public float scoreValue;
+    public AttackType attackPattern;
+
+    public ScoringScript scoreScript;
+    public EnemyWaveCreator waveScript;
+    public SplineAnimate splineScript;
     public GameObject bullet;
-    public EnemyManagerScriptableObject enemyManager;
-    private bool following;
-    private Vector3 lerpPos;
-    private float attackTimer;
+
+    public bool following;
+    private bool kamikaze;
+    public Vector3 lerpPos;
+    [SerializeField] float attackTimer;
     private float rand;
-    private int attackPattern;
+
+    public enum AttackType
+    {
+        Straight_Shot,
+        Tracking_Shot,
+        Barrage_Shot,
+        Wave_Shot,
+        Kamikaze
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        gameObject.tag = "FlyingEnemy";
         following = true;
+        kamikaze = false;
         var scoreGO = GameObject.Find("ScoringGO");
         scoreScript = scoreGO.GetComponent<ScoringScript>();
         var factoryGO = GameObject.Find("EnemyFactory");
-        factoryScript = factoryGO.GetComponent<EnemyFactoryScript>();
+        waveScript = factoryGO.GetComponent<EnemyWaveCreator>();
         splineScript = this.GetComponent<SplineAnimate>();
         var posGO = GameObject.Find("EnemyEndPositions");
 
-    }
-
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
@@ -43,14 +52,24 @@ public class EnemyScript : MonoBehaviour
     {
         attackTimer += Time.deltaTime;
         //Moves enemies smoothly to set position
-        if (following == false)
+        if (following == false && kamikaze == false)
         {
             transform.position = Vector3.Lerp(transform.position, lerpPos, (Time.time * 2f) * Time.deltaTime);
             EnemyAttack(attackPattern);
         }
+
+        if (gameObject.tag == "StartingEnemy")
+        {
+            EnemyAttack(attackPattern);
+        }
+
+        if (kamikaze)
+        {
+            transform.Translate(Vector2.down * (4 * Time.deltaTime));
+        }
         //Shooting Timer
         /*timer += Time.deltaTime;
-        
+
         }*/
     }
 
@@ -63,62 +82,104 @@ public class EnemyScript : MonoBehaviour
     public void FindPath(float offset, int path)
     {
         //Tells the enemy what path to follow
-        splineScript.Container = factoryScript.paths[path];
+        splineScript.Container = waveScript.paths[path];
         splineScript.StartOffset = offset;
         splineScript.Play();
-        enemyManager.SetEnemyType(path);
-        EnemySetup(path);
-    }
-
-    public void EnemySetup(int setupVal)
-    {
-        scoreValue = enemyManager.pointsValue;
-        var spriteRend = gameObject.GetComponent<SpriteRenderer>();
-        spriteRend.sprite = enemyManager.enemySprites[setupVal];
-        attackPattern = enemyManager.attackPattern;
-    }
-
-    public void FindPosition(Transform posToGo)
-    {
-        //Tells enemy where to go after following path
-        lerpPos = posToGo.position;
-        following = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("EnemySpace"))
         {
-            this.gameObject.tag = "StoppedEnemy";
+            gameObject.tag = "StoppedEnemy";
             rand = Random.Range(1.5f, 2.5f);
             attackTimer = 0;
             splineScript.Container = null;
-            factoryScript.SetEnemyPositions();
+            following = false;
+        }
+
+        if (attackPattern == AttackType.Kamikaze && collision.CompareTag("ExplosionSpace"))
+        {
+            bullet.tag = "EnemyBullet";
+            StartCoroutine(KamikazeAttack());
         }
     }
 
-    void EnemyAttack(int attackType)
+    void EnemyAttack(AttackType attackType)
     {
         switch (attackType)
         {
-            case 1: //Shoot Straight Ahead
-                if (gameObject.tag == "StoppedEnemy" && attackTimer >= rand)
+            case AttackType.Straight_Shot: //Shoot Straight Ahead
+                if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand)
                 {
-                    rand = Random.Range(1.8f, 2.2f);
+                    rand = Random.Range(2.5f, 3f);
                     attackTimer = 0;
                     bullet.tag = "EnemyBullet";
                     Instantiate(bullet, transform.position, transform.rotation);
                 }
+
                 break;
-            case 2: //Shot Follows Player
-                if (gameObject.tag == "StoppedEnemy" && attackTimer >= rand)
+            case AttackType.Tracking_Shot: //Shot Follows Player
+                if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand)
                 {
-                    rand = Random.Range(0.8f, 1.2f);
+                    rand = Random.Range(2.5f, 3f);
                     attackTimer = 0;
                     bullet.tag = "TrackingBullet";
                     Instantiate(bullet, transform.position, transform.rotation);
                 }
+
+                break;
+            case AttackType.Barrage_Shot:
+                if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand)
+                {
+                    rand = Random.Range(2.5f, 3f);
+                    attackTimer = 0;
+                    bullet.tag = "EnemyBullet";
+                    StartCoroutine(BarrageAttack());
+                }
+
+                break;
+            case AttackType.Wave_Shot:
+                if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand)
+                {
+                    rand = Random.Range(2.5f, 3f);
+                    attackTimer = 0;
+                    bullet.tag = "EnemyBullet";
+                    Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, -10f));
+                    Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 0));
+                    Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 10f));
+                }
+
+                break;
+            case AttackType.Kamikaze:
+                if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand)
+                {
+                    rand = Random.Range(2.5f, 3f);
+                    attackTimer = 0;
+                    kamikaze = true;
+                }
                 break;
         }
     }
+
+    public IEnumerator BarrageAttack()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Instantiate(bullet, transform.position, transform.rotation);
+            yield return new WaitForSeconds(0.04f);
+        }
+    }
+
+    public IEnumerator KamikazeAttack()
+    {
+        for (int i = 0; i < 360; i += 45)
+        {
+            Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, i));
+            yield return null;
+        }
+        scoreValue = 0f;
+        Destroy(gameObject);
+    }
 }
+
