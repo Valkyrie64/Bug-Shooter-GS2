@@ -573,7 +573,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -230.2, y: 225.5}
+  m_AnchoredPosition: {x: -261, y: -219.79999}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &236680745
@@ -1802,7 +1802,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -230.2, y: 186.3}
+  m_AnchoredPosition: {x: -261, y: -259}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &941602885
@@ -2220,7 +2220,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 212}
+  m_AnchoredPosition: {x: 0, y: 255}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1102263404
@@ -2677,7 +2677,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1332088508}
-  - component: {fileID: 1332088509}
+  - component: {fileID: 1332088510}
   m_Layer: 0
   m_Name: EnemyFactory
   m_TagString: Untagged
@@ -2702,7 +2702,7 @@ Transform:
   - {fileID: 796653901}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1332088509
+--- !u!114 &1332088510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2711,42 +2711,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 1332088507}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98c76549a15fcb5439c726e606856cde, type: 3}
+  m_Script: {fileID: 11500000, guid: 345eba908b27b3b42beef40f826f4c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timerScript: {fileID: 1102263404}
-  enemyGO:
-  - {fileID: 7801856412453845082, guid: 9b89d1aa62db40247b12985683dc7267, type: 3}
+  enemyList:
+  - {fileID: 8145333063408250054, guid: 16a7db7fdf44bdc45b911e8b8945557a, type: 3}
   - {fileID: 6717855028140565584, guid: 8d9707e1ad9eef142b3227877d2806be, type: 3}
+  - {fileID: 4430912005478180686, guid: a1e134c0e0e5e7748a2b484dcc820372, type: 3}
+  - {fileID: 7801856412453845082, guid: 9b89d1aa62db40247b12985683dc7267, type: 3}
+  - {fileID: 4577294794503788083, guid: bb97db39b07563f4d8a9eb0a53e8ec23, type: 3}
+  - {fileID: 1783384722235946530, guid: 2e1b6464e1762654995d4f0a2ec64ceb, type: 3}
   paths:
   - {fileID: 1344636697}
   - {fileID: 1641705384}
-  wave1Positions:
-  - {fileID: 1706287858}
-  - {fileID: 1475912386}
-  - {fileID: 658089677}
-  - {fileID: 239678782}
-  - {fileID: 6702061}
-  - {fileID: 1063334518}
-  - {fileID: 150243509}
-  - {fileID: 1252680496}
-  - {fileID: 11507620}
-  - {fileID: 1304553577}
-  - {fileID: 703430193}
+  endPositions:
   - {fileID: 1595063219}
-  wave2Positions:
-  - {fileID: 1153988677}
-  - {fileID: 1657172807}
-  - {fileID: 667073270}
-  - {fileID: 1545669659}
-  - {fileID: 974358390}
-  - {fileID: 1491313752}
-  - {fileID: 445314359}
-  - {fileID: 1771154239}
-  - {fileID: 1970306856}
+  - {fileID: 703430193}
+  - {fileID: 1304553577}
+  - {fileID: 11507620}
+  - {fileID: 1252680496}
+  - {fileID: 150243509}
+  - {fileID: 1063334518}
+  - {fileID: 6702061}
+  - {fileID: 239678782}
+  - {fileID: 658089677}
+  - {fileID: 1475912386}
+  - {fileID: 1706287858}
   - {fileID: 941602886}
-  offsetStart: 0
-  currentPos: 0
+  - {fileID: 1970306856}
+  - {fileID: 1771154239}
+  - {fileID: 445314359}
+  - {fileID: 1491313752}
+  - {fileID: 974358390}
+  - {fileID: 1545669659}
+  - {fileID: 667073270}
+  - {fileID: 1657172807}
+  - {fileID: 1153988677}
 --- !u!1 &1344636695
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,18 +17,13 @@ public class EnemyWaveCreator : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(Stage1Wave1());
+        StartCoroutine(Stage1());
     }
 
     // Update is called once per frame
     void Update()
     {
-        timerNO = timerScript.currentTime;
-
-        if (timerNO < 54f)
-        { 
-            //StartCoroutine(Stage1Wave2());
-        }
+        
     }
     
     void LinkToPath(int path)
@@ -50,20 +45,11 @@ public class EnemyWaveCreator : MonoBehaviour
             enemyScript.lerpPos = endPositions[endPositionIndex].position;
             enemyScript.FindPath(offsetStart, path);
             offsetStart += 0.05f;
-            Debug.Log(endPositionIndex);
             endPositionIndex++;
         }
     }
 
-    /*public void SetPositions(GameObject currentEnemy)
-    {
-        var enemyScript = currentEnemy.GetComponent<EnemyScript>();
-        enemyScript.lerpPos = endPositions[endPositionIndex].position;
-        enemyScript.following = false;
-        endPositionIndex++;
-    }*/
-
-    IEnumerator Stage1Wave1()
+    IEnumerator Stage1()
     {
         for (int i = 0; i < 12; i++)
         {
@@ -71,16 +57,6 @@ public class EnemyWaveCreator : MonoBehaviour
         }
         LinkToPath(0);
         yield return new WaitForSeconds(6f);
-        for (int i = 0; i < 10; i++)
-        {
-            Instantiate(enemyList[1], new Vector2(0, -5), Quaternion.identity);
-        }
-        LinkToPath(1);
-        yield return null;
-    }
-
-    IEnumerator Stage1Wave2()
-    {
         for (int i = 0; i < 10; i++)
         {
             Instantiate(enemyList[1], new Vector2(0, -5), Quaternion.identity);
