@@ -112,7 +112,7 @@ public class EnemyScript : MonoBehaviour
             case AttackType.Straight_Shot: //Shoot Straight Ahead
                 if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand)
                 {
-                    rand = Random.Range(2.5f, 3f);
+                    rand = Random.Range(4f, 5f);
                     attackTimer = 0;
                     bullet.tag = "EnemyBullet";
                     Instantiate(bullet, transform.position, transform.rotation);
@@ -122,7 +122,7 @@ public class EnemyScript : MonoBehaviour
             case AttackType.Tracking_Shot: //Shot Follows Player
                 if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand)
                 {
-                    rand = Random.Range(2.5f, 3f);
+                    rand = Random.Range(6.5f, 7f);
                     attackTimer = 0;
                     bullet.tag = "TrackingBullet";
                     Instantiate(bullet, transform.position, transform.rotation);
@@ -132,7 +132,7 @@ public class EnemyScript : MonoBehaviour
             case AttackType.Barrage_Shot:
                 if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand)
                 {
-                    rand = Random.Range(2.5f, 3f);
+                    rand = Random.Range(4f, 6f);
                     attackTimer = 0;
                     bullet.tag = "EnemyBullet";
                     StartCoroutine(BarrageAttack());
@@ -142,7 +142,7 @@ public class EnemyScript : MonoBehaviour
             case AttackType.Wave_Shot:
                 if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand)
                 {
-                    rand = Random.Range(2.5f, 3f);
+                    rand = Random.Range(4f, 5f);
                     attackTimer = 0;
                     bullet.tag = "EnemyBullet";
                     Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, -10f));

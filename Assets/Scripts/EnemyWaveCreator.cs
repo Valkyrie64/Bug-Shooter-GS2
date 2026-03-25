@@ -51,17 +51,29 @@ public class EnemyWaveCreator : MonoBehaviour
 
     IEnumerator Stage1()
     {
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < 3; i++)
         {
             Instantiate(enemyList[3], new Vector2(0, -5), Quaternion.identity);
         }
         LinkToPath(0);
-        yield return new WaitForSeconds(6f);
-        for (int i = 0; i < 10; i++)
+        yield return new WaitForSeconds(8f);
+        for (int i = 0; i < 3; i++)
         {
-            Instantiate(enemyList[1], new Vector2(0, -5), Quaternion.identity);
+            Instantiate(enemyList[3], new Vector2(0, -5), Quaternion.identity);
         }
         LinkToPath(1);
+        yield return new WaitForSeconds(8f);
+        for (int i = 0; i < 1; i++)
+        {
+            Instantiate(enemyList[4], new Vector2(0, -5), Quaternion.identity);
+        }
+        LinkToPath(2);
+        yield return new WaitForSeconds(8f);
+        for (int i = 0; i < 1; i++)
+        {
+            Instantiate(enemyList[0], new Vector2(0, -5), Quaternion.identity);
+        }
+        LinkToPath(3);
         yield return null;
     }
 }
