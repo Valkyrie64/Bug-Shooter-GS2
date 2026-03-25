@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.Burst.Intrinsics;
 using UnityEngine.Splines;
 
 public class EnemyWaveCreator : MonoBehaviour
@@ -18,7 +17,7 @@ public class EnemyWaveCreator : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(Level1());
+        StartCoroutine(Stage1());
     }
 
     // Update is called once per frame
@@ -45,23 +44,31 @@ public class EnemyWaveCreator : MonoBehaviour
         }
     }
 
-    IEnumerator Level1()
+    IEnumerator Stage1()
     {
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 3; i++)
         {
             Instantiate(enemyList[3], new Vector2(0, -5), Quaternion.identity);
         }
-        for (int i = 0; i < 6; i++)
-        {
-            Instantiate(enemyList[2], new Vector2(0, 5), Quaternion.identity);
-        }
         LinkToPath(0);
-        yield return new WaitForSeconds(1f);
-        for (int i = 0; i < 10; i++)
+        yield return new WaitForSeconds(8f);
+        for (int i = 0; i < 3; i++)
         {
-            Instantiate(enemyList[1], new Vector2(0, -5), Quaternion.identity);
+            Instantiate(enemyList[3], new Vector2(0, -5), Quaternion.identity);
         }
         LinkToPath(1);
+        yield return new WaitForSeconds(8f);
+        for (int i = 0; i < 1; i++)
+        {
+            Instantiate(enemyList[4], new Vector2(0, -5), Quaternion.identity);
+        }
+        LinkToPath(2);
+        yield return new WaitForSeconds(8f);
+        for (int i = 0; i < 1; i++)
+        {
+            Instantiate(enemyList[0], new Vector2(0, -5), Quaternion.identity);
+        }
+        LinkToPath(3);
         yield return null;
     }
 }
