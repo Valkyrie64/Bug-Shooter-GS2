@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.Burst.Intrinsics;
 using UnityEngine.Splines;
 
 public class EnemyWaveCreator : MonoBehaviour
@@ -17,7 +18,7 @@ public class EnemyWaveCreator : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(Stage1());
+        StartCoroutine(Level1());
     }
 
     // Update is called once per frame
@@ -32,31 +33,30 @@ public class EnemyWaveCreator : MonoBehaviour
         var enemies = GameObject.FindGameObjectsWithTag("FlyingEnemy");
         for (int i = 0; i < enemies.Length; i++)
         {
-            switch (path)
-            {
-                case 0:
-                    enemies[i].layer = 6;
-                    break;
-                case 1:
-                    enemies[i].layer = 7;
-                    break;
-            }
             var enemyScript = enemies[i].GetComponent<EnemyScript>();
-            enemyScript.lerpPos = endPositions[endPositionIndex].position;
-            enemyScript.FindPath(offsetStart, path);
-            offsetStart += 0.05f;
-            endPositionIndex++;
+            if (enemyScript.following == false)
+            {
+                enemyScript.lerpPos = endPositions[endPositionIndex].position;
+                enemyScript.FindPath(offsetStart, path);
+                offsetStart += 0.03f;
+                endPositionIndex++;
+                enemyScript.following = true;
+            }
         }
     }
 
-    IEnumerator Stage1()
+    IEnumerator Level1()
     {
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < 6; i++)
         {
             Instantiate(enemyList[3], new Vector2(0, -5), Quaternion.identity);
         }
+        for (int i = 0; i < 6; i++)
+        {
+            Instantiate(enemyList[2], new Vector2(0, 5), Quaternion.identity);
+        }
         LinkToPath(0);
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(1f);
         for (int i = 0; i < 10; i++)
         {
             Instantiate(enemyList[1], new Vector2(0, -5), Quaternion.identity);

@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class ScoringScript : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class ScoringScript : MonoBehaviour
     public float timer;
     public TMP_Text rankText;
     public float mult;
+    public Image rankImage;
+    public List<Sprite> rankSprites;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,7 +22,7 @@ public class ScoringScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = $"Score: {scoreNumber.ToString()}";
+        scoreText.text = $"Score {scoreNumber.ToString()}";
         if (timer > 0)
         {
             timer -= Time.deltaTime;
@@ -36,23 +40,23 @@ public class ScoringScript : MonoBehaviour
         switch (timer)
         {
             case <= 0f:
-                rankText.text = "Rank: D";
+                rankImage.sprite = rankSprites[0];
                 mult = 1f;
                 break;
             case <= 20f:
-                rankText.text = "Rank: C";
+                rankImage.sprite = rankSprites[1];
                 mult = 1.5f;
                 break;
             case <= 40f:
-                rankText.text = "Rank: B";
+                rankImage.sprite = rankSprites[2];
                 mult = 2f;
                 break;
             case <= 60f:
-                rankText.text = "Rank: A";
+                rankImage.sprite = rankSprites[3];
                 mult = 2.5f;
                 break;
             case > 60f:
-                rankText.text = "Rank: S";
+                rankImage.sprite = rankSprites[4];
                 mult = 3f;
                 break;
 

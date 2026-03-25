@@ -36,7 +36,6 @@ public class EnemyScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        following = true;
         kamikaze = false;
         var scoreGO = GameObject.Find("ScoringGO");
         scoreScript = scoreGO.GetComponent<ScoringScript>();
@@ -45,6 +44,16 @@ public class EnemyScript : MonoBehaviour
         splineScript = this.GetComponent<SplineAnimate>();
         var posGO = GameObject.Find("EnemyEndPositions");
 
+    }
+
+    private void Start()
+    {
+        if (gameObject.tag == "StartingEnemy")
+        {
+            following = true;
+        }
+
+        attackTimer = 0;
     }
 
     // Update is called once per frame
