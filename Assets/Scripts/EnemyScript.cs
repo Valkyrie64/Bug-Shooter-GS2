@@ -24,6 +24,9 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] float attackTimer;
     private float rand;
 
+    public AudioSource sfxSource;
+    public AudioClip[] enemyAudio;
+
     public enum AttackType
     {
         Straight_Shot,
@@ -84,6 +87,8 @@ public class EnemyScript : MonoBehaviour
 
     private void OnDisable()
     {
+        sfxSource.clip = enemyAudio[4];
+        sfxSource.Play();
         scoreScript.ScoreUpdate(scoreValue);
         Destroy(gameObject);
     }
@@ -125,6 +130,8 @@ public class EnemyScript : MonoBehaviour
                     attackTimer = 0;
                     bullet.tag = "EnemyBullet";
                     Instantiate(bullet, transform.position, transform.rotation);
+                    sfxSource.clip = enemyAudio[0];
+                    sfxSource.Play();
                 }
 
                 break;
@@ -135,6 +142,8 @@ public class EnemyScript : MonoBehaviour
                     attackTimer = 0;
                     bullet.tag = "TrackingBullet";
                     Instantiate(bullet, transform.position, transform.rotation);
+                    sfxSource.clip = enemyAudio[1];
+                    sfxSource.Play();
                 }
 
                 break;
@@ -144,6 +153,8 @@ public class EnemyScript : MonoBehaviour
                     rand = Random.Range(4f, 6f);
                     attackTimer = 0;
                     bullet.tag = "EnemyBullet";
+                    sfxSource.clip = enemyAudio[2];
+                    sfxSource.Play();
                     StartCoroutine(BarrageAttack());
                 }
 
@@ -154,6 +165,8 @@ public class EnemyScript : MonoBehaviour
                     rand = Random.Range(4f, 5f);
                     attackTimer = 0;
                     bullet.tag = "EnemyBullet";
+                    sfxSource.clip = enemyAudio[3];
+                    sfxSource.Play();
                     Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, -10f));
                     Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 0));
                     Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 10f));

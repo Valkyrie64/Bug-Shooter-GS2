@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     public bool currentShotAnim;
     private float animateTimer;
 
+    public AudioSource sfxSource;
+
     void Start()
     {
         scoreScript = scoreGO.GetComponent<ScoringScript>();
@@ -35,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Instantiate(bullet, barrel.position, Quaternion.identity);
+            sfxSource.Play();
             //animation
             animateTimer = 0;
             switch (currentShotAnim)
