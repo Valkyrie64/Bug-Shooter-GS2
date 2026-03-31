@@ -9,7 +9,6 @@ public class ScoringScript : MonoBehaviour
     public float scoreNumber;
     public TMP_Text scoreText;
     public float timer;
-    public TMP_Text rankText;
     public float mult;
     public Image rankImage;
     public List<Sprite> rankSprites;
@@ -22,7 +21,7 @@ public class ScoringScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = $"Score {scoreNumber.ToString()}";
+        scoreText.text = $"Score: {scoreNumber.ToString()}";
         if (timer > 0)
         {
             timer -= Time.deltaTime;

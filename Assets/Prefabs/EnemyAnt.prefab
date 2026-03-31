@@ -38,6 +38,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &877278074173342174
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -56,6 +57,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -77,9 +80,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -89,7 +94,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &2678238745732236988
 Rigidbody2D:
@@ -180,9 +184,11 @@ MonoBehaviour:
   scoreValue: 50
   attackPattern: 0
   scoreScript: {fileID: 0}
-  factoryScript: {fileID: 0}
+  waveScript: {fileID: 0}
   splineScript: {fileID: 0}
   bullet: {fileID: 2744354600155684608, guid: 87b9052bdfd91894eaa455a42480d8c7, type: 3}
+  following: 0
+  lerpPos: {x: 0, y: 0, z: 0}
   attackTimer: 0
 --- !u!114 &3860985996115094571
 MonoBehaviour:
@@ -203,7 +209,7 @@ MonoBehaviour:
   m_Duration: 4
   m_MaxSpeed: 4.4311104
   m_EasingMode: 0
-  m_AlignmentMode: 1
+  m_AlignmentMode: 0
   m_ObjectForwardAxis: 1
   m_ObjectUpAxis: 5
   m_StartOffset: 0
