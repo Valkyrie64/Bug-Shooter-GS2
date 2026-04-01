@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7028552439609254117
+--- !u!1001 &2598339828009792151
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -58,47 +58,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 392858764286999490, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
       propertyPath: attackPattern
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 877278074173342174, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
       propertyPath: m_Size.x
-      value: 1.25
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 877278074173342174, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
       propertyPath: m_Size.y
-      value: 1.08
+      value: 1.09
       objectReference: {fileID: 0}
     - target: {fileID: 877278074173342174, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 5520373738240396117, guid: 0a02fe53049704140aac5138c21a49f9, type: 3}
+      objectReference: {fileID: 6659274095902863726, guid: 0de41eb0e5e628d4e98db2ba0309c00f, type: 3}
     - target: {fileID: 877278074173342174, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4373262120280556725, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
       propertyPath: m_Name
-      value: Red Ant
+      value: Kamikaze Ant
       objectReference: {fileID: 0}
+    - target: {fileID: 5044325402584909929, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 63d09a297dc9b2048abacfd52bd73158, type: 2}
     - target: {fileID: 7995564137335363209, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7995564137335363209, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 1.25
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 7995564137335363209, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 1.08
+      value: 1.09
       objectReference: {fileID: 0}
     - target: {fileID: 7995564137335363209, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.25
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 7995564137335363209, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.08
+      value: 1.09
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 392858764286999490}
   - component: {fileID: 3860985996115094571}
   - component: {fileID: 1172469823602690802}
+  - component: {fileID: 5044325402584909929}
   m_Layer: 0
   m_Name: EnemyAnt
   m_TagString: FlyingEnemy
@@ -198,6 +199,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1a94b45d622d86640bd3d5443ce74fa1, type: 3}
   - {fileID: 8300000, guid: fe632c32c3450d84693cad998bdf3a98, type: 3}
   - {fileID: 8300000, guid: c26a35aa6e61f0e4eb7f83d3ac983394, type: 3}
+  animator: {fileID: 5044325402584909929}
 --- !u!114 &3860985996115094571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,3 +320,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &5044325402584909929
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4373262120280556725}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9f86fbcbcb906c748a5664c8773c0223, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

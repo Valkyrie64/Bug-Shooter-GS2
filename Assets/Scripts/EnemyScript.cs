@@ -26,6 +26,9 @@ public class EnemyScript : MonoBehaviour
 
     public AudioSource sfxSource;
     public AudioClip[] enemyAudio;
+    
+    public Animator animator;
+    private float animTimer;
 
     public enum AttackType
     {
@@ -57,12 +60,15 @@ public class EnemyScript : MonoBehaviour
         }
 
         attackTimer = 0;
+        animTimer = Random.Range(2, 8);
     }
 
     // Update is called once per frame
     void Update()
     {
         attackTimer += Time.deltaTime;
+        animTimer -= Time.deltaTime;
+        Debug.Log(animTimer);
         //Moves enemies smoothly to set position
         if (following == false && kamikaze == false)
         {
@@ -79,10 +85,18 @@ public class EnemyScript : MonoBehaviour
         {
             transform.Translate(Vector2.down * (4 * Time.deltaTime));
         }
-        //Shooting Timer
-        /*timer += Time.deltaTime;
+        //Animation
+        if (animTimer <= 0)
+        {
+            BlinkAnimation();
+        }
+        
+    }
 
-        }*/
+    void BlinkAnimation()
+    {
+        animator.Play("Blink");
+        animTimer = Random.Range(2, 8);
     }
 
     private void OnDisable()
