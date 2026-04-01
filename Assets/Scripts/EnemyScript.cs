@@ -87,8 +87,6 @@ public class EnemyScript : MonoBehaviour
 
     private void OnDisable()
     {
-        sfxSource.clip = enemyAudio[4];
-        sfxSource.Play();
         scoreScript.ScoreUpdate(scoreValue);
         Destroy(gameObject);
     }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,23 +21,51 @@ public class PlayerMovement : MonoBehaviour
     private float animateTimer;
 
     public AudioSource sfxSource;
+    
+    private PlayerInputActions inputActions;
 
+    void Awake()
+    {
+        inputActions = new PlayerInputActions();
+    }
     void Start()
     {
         scoreScript = scoreGO.GetComponent<ScoringScript>();
     }
-    // Update is called once per frame
-    void Update()
+
+    void OnEnable()
     {
-        var moveH = Input.GetAxisRaw("Horizontal");
-        var moveV = Input.GetAxisRaw("Vertical");
-        rb.linearVelocity = new Vector3(moveH * speed, moveV * speed, 0);
+        inputActions.Player.Enable();
+        inputActions.Player.Movement.performed += OnMove;
+        inputActions.Player.Movement.canceled += OnMove;
+        inputActions.Player.Shoot.performed += OnShoot;
+        inputActions.Player.Shoot.canceled += OnShoot;
+        inputActions.Player.Pause.performed += OnPause;
+        inputActions.Player.Pause.canceled += OnPause;
+    }
 
-        animateTimer += Time.deltaTime;
+    void OnDisable()
+    {
+        inputActions.Player.Movement.performed -= OnMove;
+        inputActions.Player.Movement.canceled -= OnMove;
+        inputActions.Player.Shoot.performed -= OnShoot;
+        inputActions.Player.Shoot.canceled -= OnShoot;
+        inputActions.Player.Pause.performed -= OnPause;
+        inputActions.Player.Pause.canceled -= OnPause;
+    }
 
-        if (Input.GetKeyDown(KeyCode.E))
+    void OnMove(InputAction.CallbackContext context)
+    {
+        Vector2 movement = context.ReadValue<Vector2>();
+        rb.linearVelocity = new Vector2(movement.x * speed, movement.y * speed);
+    }
+
+    void OnShoot(InputAction.CallbackContext context)
+    {
+        if (context.performed)
         {
             Instantiate(bullet, barrel.position, Quaternion.identity);
+            
             sfxSource.Play();
             //animation
             animateTimer = 0;
@@ -53,8 +82,18 @@ public class PlayerMovement : MonoBehaviour
                     currentShotAnim = true;
                     break;
             }
-
         }
+        Debug.Log("Should Shoot");
+    }
+
+    void OnPause(InputAction.CallbackContext context)
+    {
+        
+    }
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        animateTimer += Time.deltaTime;
 
         if (health <= 0)
         {
@@ -63,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    public void LateUpdate()
     {
         if (animateTimer > 0.3f)
         {
