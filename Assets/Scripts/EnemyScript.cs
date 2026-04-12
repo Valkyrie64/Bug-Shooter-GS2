@@ -23,12 +23,14 @@ public class EnemyScript : MonoBehaviour
     public Vector3 lerpPos;
     [SerializeField] float attackTimer;
     private float rand;
+    [SerializeField] private GameObject technicianRobot;
+    private bool created;
 
     public AudioSource sfxSource;
     public AudioClip[] enemyAudio;
     
     public Animator animator;
-    private float animTimer;
+    private float animTimer = 0;
 
     public enum AttackType
     {
@@ -36,7 +38,11 @@ public class EnemyScript : MonoBehaviour
         Tracking_Shot,
         Barrage_Shot,
         Wave_Shot,
-        Kamikaze
+        Kamikaze,
+        Round_Shot,
+        Quad_Shot,
+        Wall_Shot,
+        Create_Robot
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -49,6 +55,8 @@ public class EnemyScript : MonoBehaviour
         waveScript = factoryGO.GetComponent<EnemyWaveCreator>();
         splineScript = this.GetComponent<SplineAnimate>();
         var posGO = GameObject.Find("EnemyEndPositions");
+        animTimer = Random.Range(2, 8);
+        rand = Random.Range(2, 5);
 
     }
 
@@ -58,9 +66,7 @@ public class EnemyScript : MonoBehaviour
         {
             following = true;
         }
-
-        attackTimer = 0;
-        animTimer = Random.Range(2, 8);
+        
     }
 
     // Update is called once per frame
@@ -145,7 +151,6 @@ public class EnemyScript : MonoBehaviour
                     sfxSource.clip = enemyAudio[0];
                     sfxSource.Play();
                 }
-
                 break;
             case AttackType.Tracking_Shot: //Shot Follows Player
                 if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand)
@@ -157,9 +162,8 @@ public class EnemyScript : MonoBehaviour
                     sfxSource.clip = enemyAudio[1];
                     sfxSource.Play();
                 }
-
                 break;
-            case AttackType.Barrage_Shot:
+            case AttackType.Barrage_Shot: //Shoots 5 bullets
                 if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand)
                 {
                     rand = Random.Range(4f, 6f);
@@ -169,9 +173,8 @@ public class EnemyScript : MonoBehaviour
                     sfxSource.Play();
                     StartCoroutine(BarrageAttack());
                 }
-
                 break;
-            case AttackType.Wave_Shot:
+            case AttackType.Wave_Shot: //Shoots 3 bullets outward
                 if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand)
                 {
                     rand = Random.Range(4f, 5f);
@@ -183,14 +186,45 @@ public class EnemyScript : MonoBehaviour
                     Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 0));
                     Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 10f));
                 }
-
                 break;
-            case AttackType.Kamikaze:
+            case AttackType.Kamikaze: //Moves downward then explodes
                 if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand)
                 {
                     rand = Random.Range(2.5f, 3f);
                     attackTimer = 0;
                     kamikaze = true;
+                }
+                break;
+            case AttackType.Round_Shot: //Shoots bullets around itself
+                if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand)
+                {
+                    rand = Random.Range(2.5f, 3f);
+                    attackTimer = 0;
+                    StartCoroutine(RoundShot());
+                }
+                break;
+            case AttackType.Quad_Shot: //Shoots 4 rows of bullets
+                if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand)
+                {
+                    rand = Random.Range(2.5f, 3f);
+                    attackTimer = 0;
+                    StartCoroutine(QuadShot());
+                }
+                break;
+            case AttackType.Wall_Shot: //Shoots 4 rows of bullets
+                if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand)
+                {
+                    rand = Random.Range(2.5f, 3f);
+                    attackTimer = 0;
+                    StartCoroutine(WallShot());
+                }
+                break;
+            case AttackType.Create_Robot:
+                if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand && created == false)
+                {
+                    rand = Random.Range(2.5f, 3f);
+                    Instantiate(technicianRobot, new Vector2(transform.position.x, transform.position.y - 2f), transform.rotation);
+                    created = true;
                 }
                 break;
         }
@@ -214,6 +248,37 @@ public class EnemyScript : MonoBehaviour
         }
         scoreValue = 0f;
         Destroy(gameObject);
+    }
+
+    public IEnumerator RoundShot()
+    {
+        for (int i = 0; i < 360; i += 45)
+        {
+            Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, i));
+            yield return null;
+        }
+    }
+    
+    public IEnumerator QuadShot()
+    {
+        for (int i = 0; i < 2; i ++)
+        {
+            Instantiate(bullet, new Vector2(transform.position.x - 0.2f, transform.position.y), transform.rotation);
+            Instantiate(bullet, new Vector2(transform.position.x + 0.2f, transform.position.y), transform.rotation);
+            yield return new WaitForSeconds(0.08f);
+        }
+    }
+
+    public IEnumerator WallShot()
+    {
+        for (int i = 0; i < 4; i ++)
+        {
+            Instantiate(bullet, new Vector2(transform.position.x - 0.6f, transform.position.y), transform.rotation);
+            Instantiate(bullet, new Vector2(transform.position.x - 0.2f, transform.position.y), transform.rotation);
+            Instantiate(bullet, new Vector2(transform.position.x + 0.2f, transform.position.y), transform.rotation);
+            Instantiate(bullet, new Vector2(transform.position.x + 0.6f, transform.position.y), transform.rotation);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }
 

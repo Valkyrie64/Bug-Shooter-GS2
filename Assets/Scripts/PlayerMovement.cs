@@ -83,7 +83,6 @@ public class PlayerMovement : MonoBehaviour
                     break;
             }
         }
-        Debug.Log("Should Shoot");
     }
 
     void OnPause(InputAction.CallbackContext context)
