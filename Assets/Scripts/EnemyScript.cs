@@ -74,7 +74,6 @@ public class EnemyScript : MonoBehaviour
     {
         attackTimer += Time.deltaTime;
         animTimer -= Time.deltaTime;
-        Debug.Log(animTimer);
         //Moves enemies smoothly to set position
         if (following == false && kamikaze == false)
         {
@@ -89,7 +88,7 @@ public class EnemyScript : MonoBehaviour
 
         if (kamikaze)
         {
-            transform.Translate(Vector2.down * (4 * Time.deltaTime));
+            transform.Translate(Vector2.down * (4f * Time.deltaTime));
         }
         //Animation
         if (animTimer <= 0)
@@ -148,8 +147,7 @@ public class EnemyScript : MonoBehaviour
                     attackTimer = 0;
                     bullet.tag = "EnemyBullet";
                     Instantiate(bullet, transform.position, transform.rotation);
-                    sfxSource.clip = enemyAudio[0];
-                    sfxSource.Play();
+                    AudioManager.PlaySFX(SoundType.StraightShot);
                 }
                 break;
             case AttackType.Tracking_Shot: //Shot Follows Player
@@ -159,8 +157,7 @@ public class EnemyScript : MonoBehaviour
                     attackTimer = 0;
                     bullet.tag = "TrackingBullet";
                     Instantiate(bullet, transform.position, transform.rotation);
-                    sfxSource.clip = enemyAudio[1];
-                    sfxSource.Play();
+                    AudioManager.PlaySFX(SoundType.TrackingShot);
                 }
                 break;
             case AttackType.Barrage_Shot: //Shoots 5 bullets
@@ -169,8 +166,7 @@ public class EnemyScript : MonoBehaviour
                     rand = Random.Range(4f, 6f);
                     attackTimer = 0;
                     bullet.tag = "EnemyBullet";
-                    sfxSource.clip = enemyAudio[2];
-                    sfxSource.Play();
+                    AudioManager.PlaySFX(SoundType.BarrageShot);
                     StartCoroutine(BarrageAttack());
                 }
                 break;
@@ -180,8 +176,7 @@ public class EnemyScript : MonoBehaviour
                     rand = Random.Range(4f, 5f);
                     attackTimer = 0;
                     bullet.tag = "EnemyBullet";
-                    sfxSource.clip = enemyAudio[3];
-                    sfxSource.Play();
+                    AudioManager.PlaySFX(SoundType.WaveShot);
                     Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, -10f));
                     Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 0));
                     Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 10f));
@@ -193,6 +188,7 @@ public class EnemyScript : MonoBehaviour
                     rand = Random.Range(2.5f, 3f);
                     attackTimer = 0;
                     kamikaze = true;
+                    AudioManager.PlaySFX(SoundType.KamikazeShot);
                 }
                 break;
             case AttackType.Round_Shot: //Shoots bullets around itself
@@ -200,14 +196,16 @@ public class EnemyScript : MonoBehaviour
                 {
                     rand = Random.Range(2.5f, 3f);
                     attackTimer = 0;
+                    AudioManager.PlaySFX(SoundType.RoundShot);
                     StartCoroutine(RoundShot());
                 }
                 break;
-            case AttackType.Quad_Shot: //Shoots 4 rows of bullets
+            case AttackType.Quad_Shot: //Shoots 2 rows of bullets
                 if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand)
                 {
                     rand = Random.Range(2.5f, 3f);
                     attackTimer = 0;
+                    AudioManager.PlaySFX(SoundType.WallShot);
                     StartCoroutine(QuadShot());
                 }
                 break;
@@ -216,6 +214,7 @@ public class EnemyScript : MonoBehaviour
                 {
                     rand = Random.Range(2.5f, 3f);
                     attackTimer = 0;
+                    AudioManager.PlaySFX(SoundType.WallShot);
                     StartCoroutine(WallShot());
                 }
                 break;
@@ -224,6 +223,7 @@ public class EnemyScript : MonoBehaviour
                 {
                     rand = Random.Range(2.5f, 3f);
                     Instantiate(technicianRobot, new Vector2(transform.position.x, transform.position.y - 2f), transform.rotation);
+                    AudioManager.PlaySFX(SoundType.CreateShot);
                     created = true;
                 }
                 break;
@@ -246,6 +246,7 @@ public class EnemyScript : MonoBehaviour
             Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, i));
             yield return null;
         }
+        AudioManager.PlaySFX(SoundType.Explosion);
         scoreValue = 0f;
         Destroy(gameObject);
     }

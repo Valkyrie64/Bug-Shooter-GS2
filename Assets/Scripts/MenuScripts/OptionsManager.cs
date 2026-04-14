@@ -8,6 +8,11 @@ public class OptionsManager : MonoBehaviour
     public GameObject soundOptions;
     public GameObject controlOptions;
     public GameObject languageOptions;
+
+    void Awake()
+    {
+        
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,6 +20,8 @@ public class OptionsManager : MonoBehaviour
         soundOptions.SetActive(false);
         controlOptions.SetActive(false);
         languageOptions.SetActive(false);
+        AudioManager.StopMusic();
+        AudioManager.PlayMusic(MusicType.UIMenu);
     }
 
     // Update is called once per frame
@@ -29,6 +36,7 @@ public class OptionsManager : MonoBehaviour
         soundOptions.SetActive(false);
         controlOptions.SetActive(false);
         languageOptions.SetActive(false);
+        AudioManager.PlaySFX(SoundType.UIConfirm);
     }
 
     public void SoundClicked()
@@ -37,6 +45,7 @@ public class OptionsManager : MonoBehaviour
         accessabilityOptions.SetActive(false);
         controlOptions.SetActive(false);
         languageOptions.SetActive(false);
+        AudioManager.PlaySFX(SoundType.UIConfirm);
     }
 
     public void ControlClicked()
@@ -45,6 +54,7 @@ public class OptionsManager : MonoBehaviour
         accessabilityOptions.SetActive(false);
         soundOptions.SetActive(false);
         languageOptions.SetActive(false);
+        AudioManager.PlaySFX(SoundType.UIConfirm);
     }
 
     public void LanguageClicked()
@@ -53,10 +63,12 @@ public class OptionsManager : MonoBehaviour
         accessabilityOptions.SetActive(false);
         soundOptions.SetActive(false);
         controlOptions.SetActive(false);
+        AudioManager.PlaySFX(SoundType.UIConfirm);
     }
 
     public void QuitClicked()
     {
+        AudioManager.PlaySFX(SoundType.UIConfirm);
         SceneManager.LoadScene(sceneBuildIndex:0);
     }
 }

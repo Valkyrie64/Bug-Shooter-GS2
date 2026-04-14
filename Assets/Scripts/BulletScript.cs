@@ -23,7 +23,6 @@ public class BulletScript : MonoBehaviour
         transform.Translate(Vector3.up * (bulletSpeed * Time.deltaTime));
         if (!rend.isVisible)
         {
-            Debug.Log(transform.position);
             Destroy(gameObject);
         }
     }

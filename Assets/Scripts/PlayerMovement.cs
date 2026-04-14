@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Instantiate(bullet, barrel.position, Quaternion.identity);
             
-            sfxSource.Play();
+            AudioManager.PlaySFX(SoundType.PlayerShot);
             //animation
             animateTimer = 0;
             switch (currentShotAnim)

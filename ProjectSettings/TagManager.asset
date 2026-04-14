@@ -13,6 +13,7 @@ TagManager:
   - TrackingBullet
   - ExplosionSpace
   - StartingEnemy
+  - AudioManager
   layers:
   - Default
   - TransparentFX
