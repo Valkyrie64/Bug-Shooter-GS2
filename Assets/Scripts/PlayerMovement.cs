@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -24,13 +27,28 @@ public class PlayerMovement : MonoBehaviour
     
     private PlayerInputActions inputActions;
 
+    private bool autoShooting;
+    private float timeBeforeShot;
+    [SerializeField] private float fireRate;
+
     void Awake()
     {
         inputActions = new PlayerInputActions();
     }
     void Start()
     {
+        timeBeforeShot = 1/fireRate;
         scoreScript = scoreGO.GetComponent<ScoringScript>();
+        var autoOn = PlayerPrefs.GetInt("AutoFire");
+        if (autoOn == 0)
+        {
+            Debug.Log("AutoFire disabled");
+        }
+
+        if (autoOn == 1)
+        {
+            Debug.Log("AutoFire enabled");
+        }
     }
 
     void OnEnable()
@@ -38,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
         inputActions.Player.Enable();
         inputActions.Player.Movement.performed += OnMove;
         inputActions.Player.Movement.canceled += OnMove;
+        inputActions.Player.Shoot.started += OnShoot;
         inputActions.Player.Shoot.performed += OnShoot;
         inputActions.Player.Shoot.canceled += OnShoot;
         inputActions.Player.Pause.performed += OnPause;
@@ -48,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
     {
         inputActions.Player.Movement.performed -= OnMove;
         inputActions.Player.Movement.canceled -= OnMove;
+        inputActions.Player.Shoot.started -= OnShoot;
         inputActions.Player.Shoot.performed -= OnShoot;
         inputActions.Player.Shoot.canceled -= OnShoot;
         inputActions.Player.Pause.performed -= OnPause;
@@ -62,26 +82,43 @@ public class PlayerMovement : MonoBehaviour
 
     void OnShoot(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        var autoFire = PlayerPrefs.GetInt("AutoFire");
+        switch (autoFire)
         {
-            Instantiate(bullet, barrel.position, Quaternion.identity);
+            case 0:
+                if (context.performed)
+                {
+                    Instantiate(bullet, barrel.position, Quaternion.identity);
             
-            AudioManager.PlaySFX(SoundType.PlayerShot);
-            //animation
-            animateTimer = 0;
-            switch (currentShotAnim)
-            {
-                case true:
-                    animator.SetBool("LeftWing", true);
-                    animator.SetBool("RightWing", false);
-                    currentShotAnim = false;
-                    break;
-                case false:
-                    animator.SetBool("RightWing", true);
-                    animator.SetBool("LeftWing", false);
-                    currentShotAnim = true;
-                    break;
-            }
+                    AudioManager.PlaySFX(SoundType.PlayerShot);
+                    //animation
+                    animateTimer = 0;
+                    switch (currentShotAnim)
+                    {
+                        case true:
+                            animator.SetBool("LeftWing", true);
+                            animator.SetBool("RightWing", false);
+                            currentShotAnim = false;
+                            break;
+                        case false:
+                            animator.SetBool("RightWing", true);
+                            animator.SetBool("LeftWing", false);
+                            currentShotAnim = true;
+                            break;
+                    }
+                }
+                break;
+            case 1:
+                if (context.started)
+                {
+                    autoShooting = true;
+                }
+
+                if (context.canceled)
+                {
+                    autoShooting = false;
+                }
+                break;
         }
     }
 
@@ -98,6 +135,43 @@ public class PlayerMovement : MonoBehaviour
         {
             //restartButton.SetActive(true);
             //Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if (autoShooting)
+        {
+            if (timeBeforeShot <= 0f)
+            {
+                Instantiate(bullet, barrel.position, Quaternion.identity);
+                
+                AudioManager.PlaySFX(SoundType.PlayerShot);
+                //animation
+                animateTimer = 0;
+                switch (currentShotAnim)
+                {
+                    case true:
+                        animator.SetBool("LeftWing", true);
+                        animator.SetBool("RightWing", false);
+                        currentShotAnim = false;
+                        break;
+                    case false:
+                        animator.SetBool("RightWing", true);
+                        animator.SetBool("LeftWing", false);
+                        currentShotAnim = true;
+                        break;
+                }
+                timeBeforeShot = 1/fireRate;
+            }
+            else
+            {
+                timeBeforeShot -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            timeBeforeShot = 0;
         }
     }
 
@@ -120,4 +194,5 @@ public class PlayerMovement : MonoBehaviour
             //Destroy(other.gameObject);
         }
     }
+    
 }

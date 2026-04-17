@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: attackPattern
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 392858764286999490, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+      propertyPath: technicianRobot
+      value: 
+      objectReference: {fileID: 5182761172461351049}
     - target: {fileID: 877278074173342174, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
       propertyPath: m_Size.x
       value: 1.28
@@ -88,6 +92,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: StartingEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5044325402584909929, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 8bd339aba4d6e15449517ccaad56d01d, type: 2}
     - target: {fileID: 7995564137335363209, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0.5
@@ -113,3 +121,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+--- !u!1 &5182761172461351049 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4373262120280556725, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+  m_PrefabInstance: {fileID: 8889031896378405948}
+  m_PrefabAsset: {fileID: 0}

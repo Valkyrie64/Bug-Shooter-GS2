@@ -57,6 +57,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 392858764286999490, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+      propertyPath: attackPattern
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 392858764286999490, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
       propertyPath: technicianRobot
       value: 
       objectReference: {fileID: 2706956535113418580, guid: 73ca82bd16b13b54fa586f9e7ad27137, type: 3}
@@ -76,6 +80,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedTech
       objectReference: {fileID: 0}
+    - target: {fileID: 5044325402584909929, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 56f4830170153b24888847dc0eac050b, type: 2}
     - target: {fileID: 7995564137335363209, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0.5

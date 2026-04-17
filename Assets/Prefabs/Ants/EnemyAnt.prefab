@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 81357835542378172}
   - component: {fileID: 877278074173342174}
   - component: {fileID: 2678238745732236988}
-  - component: {fileID: 7995564137335363209}
+  - component: {fileID: 4163481024319057256}
   - component: {fileID: 392858764286999490}
   - component: {fileID: 3860985996115094571}
   - component: {fileID: 1172469823602690802}
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,8 +124,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!61 &7995564137335363209
-BoxCollider2D:
+--- !u!58 &4163481024319057256
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -158,18 +158,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.15}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.05, y: 0.95}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.56
 --- !u!114 &392858764286999490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +182,7 @@ MonoBehaviour:
   following: 0
   lerpPos: {x: 0, y: 0, z: 0}
   attackTimer: 0
+  technicianRobot: {fileID: 0}
   sfxSource: {fileID: 1172469823602690802}
   enemyAudio:
   - {fileID: 8300000, guid: 2a8827543d6dea34cab5cd347bb3cacb, type: 3}

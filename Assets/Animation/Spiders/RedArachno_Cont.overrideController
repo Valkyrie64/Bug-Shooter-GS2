@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RedArachno_Cont
+  m_Controller: {fileID: 9100000, guid: 17a63fae592961b41afb8652bfdd551f, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 0dfaec883cfb5044ca6ca9ecf01a0c88, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2497a711aac87924393612910f13c386, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c5a4df1bc10ed9e4698be3263ef18ad1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 102bee26ec5616c468f0d4aab2af7e9b, type: 2}

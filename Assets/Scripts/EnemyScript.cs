@@ -2,7 +2,10 @@ using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
+using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Splines;
 using Random = UnityEngine.Random;
@@ -25,12 +28,14 @@ public class EnemyScript : MonoBehaviour
     private float rand;
     [SerializeField] private GameObject technicianRobot;
     private bool created;
-
-    public AudioSource sfxSource;
-    public AudioClip[] enemyAudio;
     
     public Animator animator;
     private float animTimer = 0;
+    [SerializeField] private AnimatorOverrideController[] arachnophobiaControllers;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Sprite[] arachnophobiaSprites;
+    
+    
 
     public enum AttackType
     {
@@ -55,9 +60,9 @@ public class EnemyScript : MonoBehaviour
         waveScript = factoryGO.GetComponent<EnemyWaveCreator>();
         splineScript = this.GetComponent<SplineAnimate>();
         var posGO = GameObject.Find("EnemyEndPositions");
+        
         animTimer = Random.Range(2, 8);
         rand = Random.Range(2, 5);
-
     }
 
     private void Start()
@@ -66,7 +71,25 @@ public class EnemyScript : MonoBehaviour
         {
             following = true;
         }
-        
+        if (gameObject.layer == LayerMask.NameToLayer("SpiderLayer") && PlayerPrefs.GetInt("Arachnophobia") == 1)
+        {
+            Debug.Log("Spiders Off");
+            if (gameObject.name.Contains("Black"))
+            {
+                animator.runtimeAnimatorController = arachnophobiaControllers[0];
+                animator.SetBool("Arachnophobia", true);
+            }
+            if (gameObject.name.Contains("Flag"))
+            {
+                animator.runtimeAnimatorController = arachnophobiaControllers[1];
+                animator.SetBool("Arachnophobia", true);
+            }
+            if (gameObject.name.Contains("Red"))
+            {
+                animator.runtimeAnimatorController = arachnophobiaControllers[2];
+                animator.SetBool("Arachnophobia", true);
+            }
+        }
     }
 
     // Update is called once per frame

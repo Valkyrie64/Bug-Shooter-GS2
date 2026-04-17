@@ -60,6 +60,42 @@ PrefabInstance:
       propertyPath: attackPattern
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 392858764286999490, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 6440517488564397292}
+    - target: {fileID: 392858764286999490, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+      propertyPath: arachnophobiaSprites.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 392858764286999490, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+      propertyPath: 'arachnophobiaSprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: 5520373738240396117, guid: 0a02fe53049704140aac5138c21a49f9, type: 3}
+    - target: {fileID: 392858764286999490, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+      propertyPath: 'arachnophobiaSprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8006380657693345242, guid: 23d0011b53a51d0459745a69657c12a6, type: 3}
+    - target: {fileID: 392858764286999490, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+      propertyPath: 'arachnophobiaSprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: 6278051933143448988, guid: 408e4e919dfe1584d90a27b64db30b84, type: 3}
+    - target: {fileID: 392858764286999490, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+      propertyPath: arachnophobiaControllers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 392858764286999490, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+      propertyPath: 'arachnophobiaControllers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 22100000, guid: 03ba63a6a595fac489be80f48614f7b7, type: 2}
+    - target: {fileID: 392858764286999490, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+      propertyPath: 'arachnophobiaControllers.Array.data[1]'
+      value: 
+      objectReference: {fileID: 22100000, guid: eae54b42b84b9c243a1b03880673dfc6, type: 2}
+    - target: {fileID: 392858764286999490, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+      propertyPath: 'arachnophobiaControllers.Array.data[2]'
+      value: 
+      objectReference: {fileID: 22100000, guid: 82545bc7ddce8dd41b3bdf57e59a238e, type: 2}
     - target: {fileID: 877278074173342174, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -68,6 +104,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlagSpider
       objectReference: {fileID: 0}
+    - target: {fileID: 4373262120280556725, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5044325402584909929, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 3d165864acf44564f9faa9236a95d992, type: 2}
     - target: {fileID: 7995564137335363209, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0.5
@@ -85,3 +129,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+--- !u!212 &6440517488564397292 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 877278074173342174, guid: c38f1a44d8641ee41b4ffe98b7b72ced, type: 3}
+  m_PrefabInstance: {fileID: 6146823375735301426}
+  m_PrefabAsset: {fileID: 0}

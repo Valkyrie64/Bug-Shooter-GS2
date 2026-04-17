@@ -55,6 +55,12 @@ public class AudioManager : MonoBehaviour
     {
     }
 
+    void Update()
+    {
+        musicSource.volume = PlayerPrefs.GetFloat("MusicVolume");
+        sfxSource.volume = PlayerPrefs.GetFloat("SFXVolume");
+    }
+
     public static void PlaySFX(SoundType sound)
     {
         instance.sfxSource.PlayOneShot(instance.sfxList[(int)sound]);
@@ -62,8 +68,8 @@ public class AudioManager : MonoBehaviour
 
     public static void PlayMusic(MusicType music)
     {
-        instance.musicSource.PlayOneShot(instance.musicList[(int)music]);
         instance.musicSource.loop = true;
+        instance.musicSource.PlayOneShot(instance.musicList[(int)music]);
     }
 
     public static void StopMusic()
