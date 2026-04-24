@@ -2,10 +2,6 @@ using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Splines;
 using Random = UnityEngine.Random;
@@ -56,9 +52,12 @@ public class EnemyScript : MonoBehaviour
         kamikaze = false;
         var scoreGO = GameObject.Find("ScoringGO");
         scoreScript = scoreGO.GetComponent<ScoringScript>();
-        var factoryGO = GameObject.Find("EnemyFactory");
-        waveScript = factoryGO.GetComponent<EnemyWaveCreator>();
-        splineScript = this.GetComponent<SplineAnimate>();
+        if (gameObject.tag != "StartingEnemy")
+        {
+            var factoryGO = GameObject.Find("EnemyFactory");
+            waveScript = factoryGO.GetComponent<EnemyWaveCreator>();
+            splineScript = this.GetComponent<SplineAnimate>();
+        }
         var posGO = GameObject.Find("EnemyEndPositions");
         
         animTimer = Random.Range(2, 8);

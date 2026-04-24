@@ -22,8 +22,6 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public bool currentShotAnim;
     private float animateTimer;
-
-    public AudioSource sfxSource;
     
     private PlayerInputActions inputActions;
 
@@ -76,49 +74,55 @@ public class PlayerMovement : MonoBehaviour
 
     void OnMove(InputAction.CallbackContext context)
     {
-        Vector2 movement = context.ReadValue<Vector2>();
-        rb.linearVelocity = new Vector2(movement.x * speed, movement.y * speed);
+        if (LevelStartScript.levelStarted)
+        {
+            Vector2 movement = context.ReadValue<Vector2>();
+            rb.linearVelocity = new Vector2(movement.x * speed, movement.y * speed);
+        }
     }
 
     void OnShoot(InputAction.CallbackContext context)
     {
-        var autoFire = PlayerPrefs.GetInt("AutoFire");
-        switch (autoFire)
+        if (LevelStartScript.levelStarted)
         {
-            case 0:
-                if (context.performed)
-                {
-                    Instantiate(bullet, barrel.position, Quaternion.identity);
-            
-                    AudioManager.PlaySFX(SoundType.PlayerShot);
-                    //animation
-                    animateTimer = 0;
-                    switch (currentShotAnim)
+            var autoFire = PlayerPrefs.GetInt("AutoFire");
+            switch (autoFire)
+            {
+                case 0:
+                    if (context.performed)
                     {
-                        case true:
-                            animator.SetBool("LeftWing", true);
-                            animator.SetBool("RightWing", false);
-                            currentShotAnim = false;
-                            break;
-                        case false:
-                            animator.SetBool("RightWing", true);
-                            animator.SetBool("LeftWing", false);
-                            currentShotAnim = true;
-                            break;
+                        Instantiate(bullet, barrel.position, Quaternion.identity);
+                
+                        AudioManager.PlaySFX(SoundType.PlayerShot);
+                        //animation
+                        animateTimer = 0;
+                        switch (currentShotAnim)
+                        {
+                            case true:
+                                animator.SetBool("LeftWing", true);
+                                animator.SetBool("RightWing", false);
+                                currentShotAnim = false;
+                                break;
+                            case false:
+                                animator.SetBool("RightWing", true);
+                                animator.SetBool("LeftWing", false);
+                                currentShotAnim = true;
+                                break;
+                        }
                     }
-                }
-                break;
-            case 1:
-                if (context.started)
-                {
-                    autoShooting = true;
-                }
+                    break;
+                case 1:
+                    if (context.started)
+                    {
+                        autoShooting = true;
+                    }
 
-                if (context.canceled)
-                {
-                    autoShooting = false;
-                }
-                break;
+                    if (context.canceled)
+                    {
+                        autoShooting = false;
+                    }
+                    break;
+            }
         }
     }
 
@@ -140,6 +144,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        
         if (autoShooting)
         {
             if (timeBeforeShot <= 0f)

@@ -1,7 +1,11 @@
 using System.Collections.Concurrent;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 
 public class OptionsManager : MonoBehaviour
 {
@@ -19,6 +23,18 @@ public class OptionsManager : MonoBehaviour
     public Slider musicSlider;
     public Slider sfxSlider;
     
+    [Header("UI Elements")]
+    [SerializeField] private EventSystem eventSystem;
+    [SerializeField] private InputSystemUIInputModule inputModule;
+    [SerializeField] private Selectable[] firstItems;
+    private bool insideOptions;
+    private PlayerInputActions uiActions;
+
+
+    void Awake()
+    {
+        uiActions = new PlayerInputActions();
+    }
     void Start()
     {
         accessabilityOptions.SetActive(false);
@@ -29,13 +45,28 @@ public class OptionsManager : MonoBehaviour
         AudioManager.PlayMusic(MusicType.UIMenu);
     }
 
+    void OnEnable()
+    {
+        uiActions.Enable();
+        uiActions.UI.Cancel.performed += CancelClicked;
+        uiActions.UI.Cancel.canceled += CancelClicked;
+    }
+
+    void OnDisable()
+    {
+        uiActions.UI.Cancel.performed -= CancelClicked;
+        uiActions.UI.Cancel.canceled -= CancelClicked;
+    }
+
     public void AccesClicked()
     {
+        insideOptions = true;
         accessabilityOptions.SetActive(true);
         soundOptions.SetActive(false);
         controlOptions.SetActive(false);
         languageOptions.SetActive(false);
         AudioManager.PlaySFX(SoundType.UIConfirm);
+        eventSystem.SetSelectedGameObject(firstItems[0].gameObject);
         
         int currentAutoFire = PlayerPrefs.GetInt("AutoFire");
         if (currentAutoFire == 0)
@@ -61,30 +92,36 @@ public class OptionsManager : MonoBehaviour
 
     public void SoundClicked()
     {
+        insideOptions = true;
         soundOptions.SetActive(true);
         accessabilityOptions.SetActive(false);
         controlOptions.SetActive(false);
         languageOptions.SetActive(false);
         AudioManager.PlaySFX(SoundType.UIConfirm);
+        eventSystem.SetSelectedGameObject(firstItems[1].gameObject);
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
     }
 
     public void ControlClicked()
     {
+        insideOptions = true;
         controlOptions.SetActive(true);
         accessabilityOptions.SetActive(false);
         soundOptions.SetActive(false);
         languageOptions.SetActive(false);
+        eventSystem.SetSelectedGameObject(firstItems[2].gameObject);
         AudioManager.PlaySFX(SoundType.UIConfirm);
     }
 
     public void LanguageClicked()
     {
+        insideOptions = true;
         languageOptions.SetActive(true);
         accessabilityOptions.SetActive(false);
         soundOptions.SetActive(false);
         controlOptions.SetActive(false);
+        eventSystem.SetSelectedGameObject(firstItems[3].gameObject);
         AudioManager.PlaySFX(SoundType.UIConfirm);
     }
 
@@ -121,7 +158,7 @@ public class OptionsManager : MonoBehaviour
             PlayerPrefs.SetInt("Arachnophobia", 0);
         }
     }
-
+    
     public void MusicSliderMoved()
     {
         AudioManager.PlaySFX(SoundType.UIConfirm);
@@ -132,5 +169,15 @@ public class OptionsManager : MonoBehaviour
     {
         AudioManager.PlaySFX(SoundType.UIConfirm);
         PlayerPrefs.SetFloat("SFXVolume", sfxSlider.value);
+    }
+
+    public void CancelClicked(InputAction.CallbackContext ctx)
+    {
+        if (insideOptions)
+        {
+            AudioManager.PlaySFX(SoundType.UIConfirm);
+            eventSystem.SetSelectedGameObject(firstItems[4].gameObject);
+            insideOptions = false;
+        }
     }
 }

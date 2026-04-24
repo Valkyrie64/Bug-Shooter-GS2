@@ -36,40 +36,42 @@ public class TimerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Scene current = SceneManager.GetActiveScene();
-        //? means if true
-        //: means other
-        currentTime = countDown ? currentTime -= Time.deltaTime : currentTime += Time.deltaTime;
-
-        //Creates a stop limit for the timer
-        if (hasLimit && ((countDown && currentTime <= timerLimit) || (!countDown && currentTime >= timerLimit)))
-        {
-            currentTime = timerLimit;
-            SetTimerText();
-            //To change text color
-            //timerText.color = Color.red;
-            enabled = false;
-        }
-
-        //Ends level when time runs out
-        if(currentTime <= 0)
-        {
-            currentTime = 0;
-            if (current.name == "Level_1")
-            {
-                SceneManager.LoadScene(current.buildIndex - 1);
-            }
-            if (current.name == "Level_2")
-            {
-                SceneManager.LoadScene(current.buildIndex - 3);
-            }
-            if (current.name == "Boss_forReal")
-            {
-                SceneManager.LoadScene(current.buildIndex - 5);
-            }
-        }
-
         SetTimerText();
+        if (LevelStartScript.levelStarted)
+        {
+            Scene current = SceneManager.GetActiveScene();
+            //? means if true
+            //: means other
+            currentTime = countDown ? currentTime -= Time.deltaTime : currentTime += Time.deltaTime;
+
+            //Creates a stop limit for the timer
+            if (hasLimit && ((countDown && currentTime <= timerLimit) || (!countDown && currentTime >= timerLimit)))
+            {
+                currentTime = timerLimit;
+                SetTimerText();
+                //To change text color
+                //timerText.color = Color.red;
+                enabled = false;
+            }
+
+            //Ends level when time runs out
+            if(currentTime <= 0)
+            {
+                currentTime = 0;
+                if (current.name == "Level_1")
+                {
+                    SceneManager.LoadScene(current.buildIndex - 1);
+                }
+                if (current.name == "Level_2")
+                {
+                    SceneManager.LoadScene(current.buildIndex - 3);
+                }
+                if (current.name == "Boss_forReal")
+                {
+                    SceneManager.LoadScene(current.buildIndex - 5);
+                }
+            }
+        }
     }
 
     private void SetTimerText()

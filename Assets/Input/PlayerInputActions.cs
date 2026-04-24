@@ -178,7 +178,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""AnalogStick"",
-                    ""id"": ""9c3dfd52-d77f-47ca-b546-a7570f59d761"",
+                    ""id"": ""c4e8b720-456e-464d-854a-37e4b40e6d61"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -189,7 +189,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""d54d4d02-e44c-48c6-8cb1-b9932dd2afd1"",
+                    ""id"": ""0609d97b-b46c-488f-9b57-25df4c58a6a6"",
                     ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -200,7 +200,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""5934de57-7c81-4cf8-b74d-222047208b1a"",
+                    ""id"": ""7293b3c6-af01-44b0-9f0d-a47c3c6efd05"",
                     ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -211,7 +211,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""bdf7bab0-17fb-49d1-80f4-e5d0b98ff171"",
+                    ""id"": ""61be1914-74a1-42f7-9cec-0a752313b5f9"",
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -222,7 +222,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""64825e7c-121a-49cd-84d0-669ca94c22fa"",
+                    ""id"": ""ce168d6d-ed1d-4f73-a5b1-1180f77e84b2"",
                     ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
