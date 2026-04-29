@@ -15,6 +15,7 @@ TagManager:
   - StartingEnemy
   - AudioManager
   - Level-Buttons
+  - LanguageText
   layers:
   - Default
   - TransparentFX

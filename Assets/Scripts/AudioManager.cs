@@ -26,9 +26,9 @@ public enum MusicType
 {
     Title,
     UIMenu,
-    AntLevel,
-    BeetleLevel,
-    SpiderLevel
+    Level1Music,
+    Level2Music,
+    BossMusic
     
 }
 
@@ -68,8 +68,8 @@ public class AudioManager : MonoBehaviour
 
     public static void PlayMusic(MusicType music)
     {
-        instance.musicSource.loop = true;
-        instance.musicSource.PlayOneShot(instance.musicList[(int)music]);
+        instance.musicSource.clip = instance.musicList[(int)music];
+        instance.musicSource.Play();
     }
 
     public static void StopMusic()

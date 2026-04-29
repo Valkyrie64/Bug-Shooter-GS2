@@ -64,6 +64,9 @@ MonoBehaviour:
   musicList:
   - {fileID: 8300000, guid: 5f48bbc6715ab9149addfb686325a58d, type: 3}
   - {fileID: 8300000, guid: f51e9f0b69d7ab849b03c74e8b16ac48, type: 3}
+  - {fileID: 8300000, guid: 5fd654e95d248b54bb65408dbb3b58cf, type: 3}
+  - {fileID: 8300000, guid: 0528281a27e7a454fbb2354baf137249, type: 3}
+  - {fileID: 8300000, guid: aa837b5704ea68843818f592b7beaf0b, type: 3}
   sfxSource: {fileID: 4459276973180367295}
   musicSource: {fileID: 8735037271879717274}
 --- !u!82 &4459276973180367295
@@ -178,7 +181,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

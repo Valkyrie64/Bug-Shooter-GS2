@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine.Events;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Samples.RebindUI;
+using UnityEngine.UI;
 
 ////TODO: localization support
 
 ////TODO: deal with composites that have parts bound in different control schemes
 
-namespace UnityEngine.InputSystem.Samples.RebindUI
+namespace Samples.Input_System._1._18._0.Rebinding_UI
 {
     /// <summary>
     /// A reusable component with a self-contained UI for rebinding a single action.
@@ -271,7 +274,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// </summary>
         public void StartInteractiveRebind()
         {
-            m_Action.action.Disable();
+            m_Action.action.actionMap.Disable();
             if (!ResolveActionAndBinding(out var action, out var bindingIndex))
                 return;
 
@@ -331,8 +334,9 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 if (actionWasEnabledPriorToRebind)
                     action.actionMap.Enable();
                 
-                m_Action.action.Enable();
+                m_Action.action.actionMap.Enable();
                 SaveActionBindings();
+                LoadActionBindings();
             }
 
             // An "InvalidOperationException: Cannot rebind action x while it is enabled" will

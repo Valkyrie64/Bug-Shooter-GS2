@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class TitleMenu : MonoBehaviour
 {
-    [SerializeField] private Image bugImage;
+    [SerializeField] private GameObject titleAnt;
+    [SerializeField] private SpriteRenderer bugImage;
     [SerializeField] private Sprite[] sprites;
     [Header("Title Collections")]
     [SerializeField] private GameObject startingOptions;
@@ -39,6 +40,8 @@ public class TitleMenu : MonoBehaviour
     {
         startingOptions.SetActive(true);
         levelSelection.SetActive(false);
+        titleAnt.SetActive(true);
+        bugImage.gameObject.SetActive(false);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -65,6 +68,8 @@ public class TitleMenu : MonoBehaviour
         world3.SetActive(false);
         level2 = GameObject.Find("Level-2").GetComponent<Button>();
         level3 = GameObject.Find("Level-3").GetComponent<Button>();
+        titleAnt.SetActive(false);
+        bugImage.gameObject.SetActive(true);
         bugImage.sprite = sprites[0];
         eventSystem.SetSelectedGameObject(firstItems[1].gameObject);
         nextSelection = GameObject.Find("Level-1").GetComponent<Selectable>();
@@ -116,7 +121,8 @@ public class TitleMenu : MonoBehaviour
         AudioManager.PlaySFX(SoundType.UIConfirm);
         startingOptions.SetActive(true);
         levelSelection.SetActive(false);
-        bugImage.sprite = sprites[0];
+        titleAnt.SetActive(true);
+        bugImage.gameObject.SetActive(false);
         eventSystem.SetSelectedGameObject(firstItems[0].gameObject);
     }
 

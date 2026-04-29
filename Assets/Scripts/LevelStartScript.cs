@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class LevelStartScript : MonoBehaviour
 {
@@ -14,15 +14,32 @@ public class LevelStartScript : MonoBehaviour
     public static bool levelStarted;
     [SerializeField] private GameObject playerBoundries;
     [SerializeField] private GameObject enemyFactory;
+    private string currentScene;
 
     void Awake()
     {
         levelStarted = false;
         enemies = GameObject.FindGameObjectsWithTag("StartingEnemy");
+        currentScene = SceneManager.GetActiveScene().name;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (currentScene == "W1Level-1" || currentScene == "W1Level-2" || currentScene == "W1Level-3")
+        {
+            AudioManager.PlayMusic(MusicType.Level1Music);
+        }
+
+        if (currentScene == "W2Level-1" || currentScene == "W2Level-2" || currentScene == "W2Level-3")
+        {
+            AudioManager.PlayMusic(MusicType.Level2Music);
+        }
+
+        if (currentScene == "W3Level-1" || currentScene == "W3Level-2" || currentScene == "W3Level-3")
+        {
+            AudioManager.PlayMusic(MusicType.BossMusic);
+        }
+        
         StartCoroutine(EnemyTransition(1f));
         StartCoroutine(PlayerTransition(1f));
     }
