@@ -12,7 +12,6 @@ public class OptionsManager : MonoBehaviour
     [Header("Categories")]
     public GameObject accessabilityOptions;
     public GameObject soundOptions;
-    public GameObject controlOptions;
     public GameObject languageOptions;
 
     [Header("Accessibility")]
@@ -39,7 +38,6 @@ public class OptionsManager : MonoBehaviour
     {
         accessabilityOptions.SetActive(false);
         soundOptions.SetActive(false);
-        controlOptions.SetActive(false);
         languageOptions.SetActive(false);
         AudioManager.StopMusic();
         AudioManager.PlayMusic(MusicType.UIMenu);
@@ -63,7 +61,6 @@ public class OptionsManager : MonoBehaviour
         insideOptions = true;
         accessabilityOptions.SetActive(true);
         soundOptions.SetActive(false);
-        controlOptions.SetActive(false);
         languageOptions.SetActive(false);
         AudioManager.PlaySFX(SoundType.UIConfirm);
         eventSystem.SetSelectedGameObject(firstItems[0].gameObject);
@@ -95,7 +92,6 @@ public class OptionsManager : MonoBehaviour
         insideOptions = true;
         soundOptions.SetActive(true);
         accessabilityOptions.SetActive(false);
-        controlOptions.SetActive(false);
         languageOptions.SetActive(false);
         AudioManager.PlaySFX(SoundType.UIConfirm);
         eventSystem.SetSelectedGameObject(firstItems[1].gameObject);
@@ -106,7 +102,6 @@ public class OptionsManager : MonoBehaviour
     public void ControlClicked()
     {
         insideOptions = true;
-        controlOptions.SetActive(true);
         accessabilityOptions.SetActive(false);
         soundOptions.SetActive(false);
         languageOptions.SetActive(false);
@@ -120,7 +115,6 @@ public class OptionsManager : MonoBehaviour
         languageOptions.SetActive(true);
         accessabilityOptions.SetActive(false);
         soundOptions.SetActive(false);
-        controlOptions.SetActive(false);
         eventSystem.SetSelectedGameObject(firstItems[3].gameObject);
         AudioManager.PlaySFX(SoundType.UIConfirm);
     }

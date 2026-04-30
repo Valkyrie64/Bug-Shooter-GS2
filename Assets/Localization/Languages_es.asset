@@ -90,6 +90,14 @@ MonoBehaviour:
     m_Localized: Aracnofobia
     m_Metadata:
       m_Items: []
+  - m_Id: 1935637916811264
+    m_Localized: Niveles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1935824122937344
+    m_Localized: Tanteo
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

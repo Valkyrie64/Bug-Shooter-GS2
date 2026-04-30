@@ -90,6 +90,14 @@ MonoBehaviour:
     m_Localized: Arachnophobia
     m_Metadata:
       m_Items: []
+  - m_Id: 1935637916811264
+    m_Localized: Levels
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1935824122937344
+    m_Localized: Scoring
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

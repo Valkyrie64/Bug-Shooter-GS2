@@ -16,6 +16,8 @@ TagManager:
   - AudioManager
   - Level-Buttons
   - LanguageText
+  - LanguageButton
+  - OptionsButton
   layers:
   - Default
   - TransparentFX

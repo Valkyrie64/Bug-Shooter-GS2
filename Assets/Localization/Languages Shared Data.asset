@@ -72,11 +72,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 863453081370624
-    m_Key: New Entry
+    m_Key: Controls
     m_Metadata:
       m_Items: []
   - m_Id: 863662150647808
-    m_Key: New Entry 1
+    m_Key: Language
     m_Metadata:
       m_Items: []
   - m_Id: 868641238286336
@@ -85,6 +85,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 870235967193088
     m_Key: Arachnophobia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1935637916811264
+    m_Key: Levels
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1935824122937344
+    m_Key: Scoring
     m_Metadata:
       m_Items: []
   m_Metadata:

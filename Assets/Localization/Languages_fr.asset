@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1176211947520
-    m_Localized: Contre
+    m_Localized: Versus
     m_Metadata:
       m_Items: []
   - m_Id: 1201604263936
@@ -71,7 +71,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 862508402475008
-    m_Localized: Bruit
+    m_Localized: Son
     m_Metadata:
       m_Items: []
   - m_Id: 863453081370624
@@ -79,7 +79,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 863662150647808
-    m_Localized: Langage
+    m_Localized: Langue
     m_Metadata:
       m_Items: []
   - m_Id: 868641238286336
@@ -88,6 +88,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 870235967193088
     m_Localized: Arachnophobie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1935637916811264
+    m_Localized: Niveaux
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1935824122937344
+    m_Localized: Score
     m_Metadata:
       m_Items: []
   references:

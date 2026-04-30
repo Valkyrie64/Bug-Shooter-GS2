@@ -36,12 +36,17 @@ public class TitleMenu : MonoBehaviour
     [SerializeField] private Selectable[] firstItems;
     private Selectable nextSelection;
     private Selectable backSelection;
+    
+    [SerializeField] private SpriteRenderer backgroundImage;
+    [SerializeField] private Sprite[] backgroundSprites;
+    [SerializeField] private GameObject titleImage;
     private void Awake()
     {
         startingOptions.SetActive(true);
         levelSelection.SetActive(false);
         titleAnt.SetActive(true);
         bugImage.gameObject.SetActive(false);
+        backgroundImage.sprite = backgroundSprites[0];
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -71,6 +76,8 @@ public class TitleMenu : MonoBehaviour
         titleAnt.SetActive(false);
         bugImage.gameObject.SetActive(true);
         bugImage.sprite = sprites[0];
+        backgroundImage.sprite = backgroundSprites[1];
+        titleImage.SetActive(false);
         eventSystem.SetSelectedGameObject(firstItems[1].gameObject);
         nextSelection = GameObject.Find("Level-1").GetComponent<Selectable>();
         world1Navigation.selectOnDown = nextSelection;
@@ -83,22 +90,36 @@ public class TitleMenu : MonoBehaviour
         var level3Button = selectableButtons[2].gameObject.GetComponent<Button>();
         var level2Button = selectableButtons[1].gameObject.GetComponent<Button>();
         var level1Button = selectableButtons[0].gameObject.GetComponent<Button>();
-        if (level3Button.interactable)
-        { 
+
+        var level3Lock = level3Button.GetComponentInChildren<Image>();
+        var level2Lock = level2Button.GetComponentInChildren<Image>();
+        if (PlayerPrefs.GetInt("W1L3") == 1)
+        {
+            level1Button.interactable = true;
+            level2Button.interactable = true;
+            level3Button.interactable = true;
             backSelection = GameObject.Find("Level-3").GetComponent<Selectable>();
             backNavigation.selectOnUp = backSelection;
             backButton.navigation = backNavigation;
+            level3Lock.gameObject.SetActive(false);
         }
 
-        if (level2Button.interactable && level3Button.interactable == false)
+        if (PlayerPrefs.GetInt("W1L2") == 1)
         {
+            level1Button.interactable = true;
+            level2Button.interactable = true;
+            level3Button.interactable = false;
             backSelection = GameObject.Find("Level-2").GetComponent<Selectable>();
             backNavigation.selectOnUp = backSelection;
             backButton.navigation = backNavigation;
+            level2Lock.gameObject.SetActive(false);
         }
 
-        if (level1Button.interactable && level2Button.interactable == false && level3Button.interactable == false)
+        if (PlayerPrefs.GetInt("W1L2") == 0)
         {
+            level1Button.interactable = true;
+            level2Button.interactable = false;
+            level3Button.interactable = false;
             backSelection = GameObject.Find("Level-1").GetComponent<Selectable>();
             backNavigation.selectOnUp = backSelection;
             backButton.navigation = backNavigation;
@@ -123,6 +144,8 @@ public class TitleMenu : MonoBehaviour
         levelSelection.SetActive(false);
         titleAnt.SetActive(true);
         bugImage.gameObject.SetActive(false);
+        backgroundImage.sprite = backgroundSprites[0];
+        titleImage.SetActive(true);
         eventSystem.SetSelectedGameObject(firstItems[0].gameObject);
     }
 
@@ -146,22 +169,36 @@ public class TitleMenu : MonoBehaviour
         var level3Button = selectableButtons[2].gameObject.GetComponent<Button>();
         var level2Button = selectableButtons[1].gameObject.GetComponent<Button>();
         var level1Button = selectableButtons[0].gameObject.GetComponent<Button>();
-        if (level3Button.interactable)
-        { 
+        
+        var level3Lock = level3Button.GetComponentInChildren<Image>();
+        var level2Lock = level2Button.GetComponentInChildren<Image>();
+        if (PlayerPrefs.GetInt("W1L3") == 1)
+        {
+            level1Button.interactable = true;
+            level2Button.interactable = true;
+            level3Button.interactable = true;
             backSelection = GameObject.Find("Level-3").GetComponent<Selectable>();
             backNavigation.selectOnUp = backSelection;
             backButton.navigation = backNavigation;
+            level3Lock.gameObject.SetActive(false);
         }
 
-        if (level2Button.interactable && level3Button.interactable == false)
+        if (PlayerPrefs.GetInt("W1L2") == 1)
         {
+            level1Button.interactable = true;
+            level2Button.interactable = true;
+            level3Button.interactable = false;
             backSelection = GameObject.Find("Level-2").GetComponent<Selectable>();
             backNavigation.selectOnUp = backSelection;
             backButton.navigation = backNavigation;
+            level2Lock.gameObject.SetActive(false);
         }
 
-        if (level1Button.interactable && level2Button.interactable == false && level3Button.interactable == false)
+        if (PlayerPrefs.GetInt("W1L2") == 0)
         {
+            level1Button.interactable = true;
+            level2Button.interactable = false;
+            level3Button.interactable = false;
             backSelection = GameObject.Find("Level-1").GetComponent<Selectable>();
             backNavigation.selectOnUp = backSelection;
             backButton.navigation = backNavigation;
@@ -188,22 +225,36 @@ public class TitleMenu : MonoBehaviour
         var level3Button = selectableButtons[2].gameObject.GetComponent<Button>();
         var level2Button = selectableButtons[1].gameObject.GetComponent<Button>();
         var level1Button = selectableButtons[0].gameObject.GetComponent<Button>();
-        if (level3Button.interactable)
+        
+        var level3Lock = level3Button.GetComponentInChildren<Image>();
+        var level2Lock = level2Button.GetComponentInChildren<Image>();
+        if (PlayerPrefs.GetInt("W2L3") == 1)
         { 
+            level1Button.interactable = true;
+            level2Button.interactable = true;
+            level3Button.interactable = true;
             backSelection = GameObject.Find("Level-3").GetComponent<Selectable>();
             backNavigation.selectOnUp = backSelection;
             backButton.navigation = backNavigation;
+            level3Lock.gameObject.SetActive(false);
         }
 
-        if (level2Button.interactable && level3Button.interactable == false)
+        if (PlayerPrefs.GetInt("W2L2") == 1)
         {
+            level1Button.interactable = true;
+            level2Button.interactable = true;
+            level3Button.interactable = false;
             backSelection = GameObject.Find("Level-2").GetComponent<Selectable>();
             backNavigation.selectOnUp = backSelection;
             backButton.navigation = backNavigation;
+            level2Lock.gameObject.SetActive(false);
         }
 
-        if (level1Button.interactable && level2Button.interactable == false && level3Button.interactable == false)
+        if (PlayerPrefs.GetInt("W2L2") == 0)
         {
+            level1Button.interactable = true;
+            level2Button.interactable = false;
+            level3Button.interactable = false;
             backSelection = GameObject.Find("Level-1").GetComponent<Selectable>();
             backNavigation.selectOnUp = backSelection;
             backButton.navigation = backNavigation;
@@ -238,22 +289,36 @@ public class TitleMenu : MonoBehaviour
         var level3Button = selectableButtons[2].gameObject.GetComponent<Button>();
         var level2Button = selectableButtons[1].gameObject.GetComponent<Button>();
         var level1Button = selectableButtons[0].gameObject.GetComponent<Button>();
-        if (level3Button.interactable)
-        { 
+        
+        var level3Lock = level3Button.GetComponentInChildren<Image>();
+        var level2Lock = level2Button.GetComponentInChildren<Image>();
+        if (PlayerPrefs.GetInt("W3L3") == 1)
+        {
+            level1Button.interactable = true;
+            level2Button.interactable = true;
+            level3Button.interactable = true;
             backSelection = GameObject.Find("Level-3").GetComponent<Selectable>();
             backNavigation.selectOnUp = backSelection;
             backButton.navigation = backNavigation;
+            level3Lock.gameObject.SetActive(false);
         }
 
-        if (level2Button.interactable && level3Button.interactable == false)
+        if (PlayerPrefs.GetInt("W3L2") == 1)
         {
+            level1Button.interactable = true;
+            level2Button.interactable = true;
+            level3Button.interactable = false;
             backSelection = GameObject.Find("Level-2").GetComponent<Selectable>();
             backNavigation.selectOnUp = backSelection;
             backButton.navigation = backNavigation;
+            level2Lock.gameObject.SetActive(false);
         }
 
-        if (level1Button.interactable && level2Button.interactable == false && level3Button.interactable == false)
+        if (PlayerPrefs.GetInt("W3L2") == 0)
         {
+            level1Button.interactable = true;
+            level2Button.interactable = false;
+            level3Button.interactable = false;
             backSelection = GameObject.Find("Level-1").GetComponent<Selectable>();
             backNavigation.selectOnUp = backSelection;
             backButton.navigation = backNavigation;
