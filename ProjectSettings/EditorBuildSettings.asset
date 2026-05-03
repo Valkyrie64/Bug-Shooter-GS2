@@ -41,6 +41,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 31569e6fe7f6c0a42ad6f34cffea205d
+  - enabled: 1
+    path: Assets/Scenes/How To Play.unity
+    guid: 152cde338cefde04baa412daabca3ac8
+  - enabled: 1
+    path: Assets/Scenes/Lost.unity
+    guid: 0ffe021a97ebde445bde7f582d685e7d
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: d9990d2b9bee6b54ead94c72eacdbf02, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 619668078770bb342bf1a8eb051e62f2, type: 3}

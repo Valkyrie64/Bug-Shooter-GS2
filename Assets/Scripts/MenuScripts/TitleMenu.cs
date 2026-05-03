@@ -327,56 +327,71 @@ public class TitleMenu : MonoBehaviour
 
     public void World1Level1Clicked()
     {
+        PlayerPrefs.SetInt("LastLevelScene", 1);
         AudioManager.PlaySFX(SoundType.UIConfirm);
         SceneManager.LoadScene(sceneBuildIndex:1);
     }
     
     public void World1Level2Clicked()
     {
+        PlayerPrefs.SetInt("LastLevelScene", 2);
         AudioManager.PlaySFX(SoundType.UIConfirm);
         SceneManager.LoadScene(sceneBuildIndex:2);
     }
     
     public void World1Level3Clicked()
     {
+        PlayerPrefs.SetInt("LastLevelScene", 3);
         AudioManager.PlaySFX(SoundType.UIConfirm);
         SceneManager.LoadScene(sceneBuildIndex:3);
     }
     
     public void World2Level1Clicked()
     {
+        PlayerPrefs.SetInt("LastLevelScene", 4);
         AudioManager.PlaySFX(SoundType.UIConfirm);
         SceneManager.LoadScene(sceneBuildIndex:4);
     }
     
     public void World2Level2Clicked()
     {
+        PlayerPrefs.SetInt("LastLevelScene", 5);
         AudioManager.PlaySFX(SoundType.UIConfirm);
         SceneManager.LoadScene(sceneBuildIndex:5);
     }
     
     public void World2Level3Clicked()
     {
+        PlayerPrefs.SetInt("LastLevelScene", 6);
         AudioManager.PlaySFX(SoundType.UIConfirm);
         SceneManager.LoadScene(sceneBuildIndex:6);
     }
     
     public void World3Level1Clicked()
     {
+        PlayerPrefs.SetInt("LastLevelScene", 7);
         AudioManager.PlaySFX(SoundType.UIConfirm);
         SceneManager.LoadScene(sceneBuildIndex:7);
     }
     
     public void World3Level2Clicked()
     {
+        PlayerPrefs.SetInt("LastLevelScene", 8);
         AudioManager.PlaySFX(SoundType.UIConfirm);
         SceneManager.LoadScene(sceneBuildIndex:8);
     }
     
     public void World3Level3Clicked()
     {
+        PlayerPrefs.SetInt("LastLevelScene", 9);
         AudioManager.PlaySFX(SoundType.UIConfirm);
         SceneManager.LoadScene(sceneBuildIndex:9);
+    }
+    
+    public void HTPClicked()
+    {
+        AudioManager.PlaySFX(SoundType.UIConfirm);
+        SceneManager.LoadScene(sceneBuildIndex:12);
     }
 
     public void OptionsClicked()

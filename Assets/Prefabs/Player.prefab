@@ -207,13 +207,16 @@ MonoBehaviour:
   rb: {fileID: 6656878590491753958}
   bullet: {fileID: 644244602692536722, guid: aa29342e205f0144f94fb2f62e834656, type: 3}
   barrel: {fileID: 7772114396998672738}
-  health: 0
+  health: 3
   scoreGO: {fileID: 0}
-  livesGO: {fileID: 0}
   restartButton: {fileID: 0}
   animator: {fileID: 8036792386109263635}
   currentShotAnim: 0
   fireRate: 5
+  livesImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!95 &8036792386109263635
 Animator:
   serializedVersion: 7

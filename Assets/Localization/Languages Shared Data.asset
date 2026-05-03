@@ -95,6 +95,26 @@ MonoBehaviour:
     m_Key: Scoring
     m_Metadata:
       m_Items: []
+  - m_Id: 2497951934054400
+    m_Key: MovementHTP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2498685769482240
+    m_Key: ShootHTP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2862555004534784
+    m_Key: HTP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3328630280290304
+    m_Key: Retry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3328703558975488
+    m_Key: Title
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

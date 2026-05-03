@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,7 +10,8 @@ public class CursorScript : MonoBehaviour
     private GameObject currentUIObject;
 
     [SerializeField] private float offset;
-    void Start()
+
+    private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }

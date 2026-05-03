@@ -98,6 +98,26 @@ MonoBehaviour:
     m_Localized: Score
     m_Metadata:
       m_Items: []
+  - m_Id: 2497951934054400
+    m_Localized: "Utilisez WASD/le joystick gauche pour vous d\xE9placer."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2498685769482240
+    m_Localized: "Utilisez la touche Entr\xE9e/Sud pour tirer."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2862555004534784
+    m_Localized: Comment Jouer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3328630280290304
+    m_Localized: Refaire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3328703558975488
+    m_Localized: Titre
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

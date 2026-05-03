@@ -98,6 +98,26 @@ MonoBehaviour:
     m_Localized: Tanteo
     m_Metadata:
       m_Items: []
+  - m_Id: 2497951934054400
+    m_Localized: Usa WASD/Stick izquierdo para moverte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2498685769482240
+    m_Localized: "Usa el bot\xF3n Enter/Sur para disparar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2862555004534784
+    m_Localized: "C\xF3mo Jugar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3328630280290304
+    m_Localized: Rever
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3328703558975488
+    m_Localized: Titulo
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

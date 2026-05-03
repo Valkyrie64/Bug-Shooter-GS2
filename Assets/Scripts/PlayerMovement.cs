@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
     public int health;
     public GameObject scoreGO;
     private ScoringScript scoreScript;
-    public GameObject livesGO;
     public GameObject restartButton;
 
     //animation components
@@ -28,6 +28,10 @@ public class PlayerMovement : MonoBehaviour
     private bool autoShooting;
     private float timeBeforeShot;
     [SerializeField] private float fireRate;
+    
+    [SerializeField] private GameObject[] livesImages;
+    private Collider2D playerColl;
+    private bool gameEnd;
 
     void Awake()
     {
@@ -37,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         timeBeforeShot = 1/fireRate;
         scoreScript = scoreGO.GetComponent<ScoringScript>();
+        playerColl = gameObject.GetComponent<Collider2D>();
         var autoOn = PlayerPrefs.GetInt("AutoFire");
         if (autoOn == 0)
         {
@@ -142,9 +147,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void GameLose()
+    {
+        SceneManager.LoadScene(sceneBuildIndex: 13);
+        gameObject.SetActive(false);
+    }
+
     private void Update()
     {
-        
         if (autoShooting)
         {
             if (timeBeforeShot <= 0f)
@@ -187,6 +197,21 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("LeftWing", false);
             animator.SetBool("RightWing", false);
         }
+        
+        if (animateTimer > 1.1f)
+        {
+            if (health > 0)
+            {
+                animateTimer = 0;
+                animator.SetBool("Hit", false);
+                playerColl.enabled = true;
+                inputActions.Enable();
+            }
+            else
+            {
+                GameLose();
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -195,9 +220,17 @@ public class PlayerMovement : MonoBehaviour
         {
             scoreScript.timer -= 5f;
             Destroy(other.gameObject);
-            //health--;
-            //Destroy(other.gameObject);
+            LifeLost();
         }
     }
-    
+
+    void LifeLost()
+    {
+        animateTimer = 0;
+        health--;
+        playerColl.enabled = false;
+        livesImages[health].SetActive(false);
+        inputActions.Disable();
+        animator.SetBool("Hit", true);
+    }
 }
