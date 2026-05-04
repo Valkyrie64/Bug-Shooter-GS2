@@ -30,6 +30,8 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private AnimatorOverrideController[] arachnophobiaControllers;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite[] arachnophobiaSprites;
+
+    private TimerManager timerScript;
     
     
 
@@ -52,6 +54,7 @@ public class EnemyScript : MonoBehaviour
         kamikaze = false;
         var scoreGO = GameObject.Find("ScoringGO");
         scoreScript = scoreGO.GetComponent<ScoringScript>();
+        timerScript = GameObject.Find("Timer").GetComponent<TimerManager>();
         if (gameObject.tag != "StartingEnemy")
         {
             var factoryGO = GameObject.Find("EnemyFactory");
@@ -94,28 +97,31 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        attackTimer += Time.deltaTime;
-        animTimer -= Time.deltaTime;
-        //Moves enemies smoothly to set position
-        if (following == false && kamikaze == false)
+        if (timerScript.currentTime > 0)
         {
-            transform.position = Vector3.Lerp(transform.position, lerpPos, (Time.time * 2f) * Time.deltaTime);
-            EnemyAttack(attackPattern);
-        }
+            attackTimer += Time.deltaTime;
+            animTimer -= Time.deltaTime;
+            //Moves enemies smoothly to set position
+            if (following == false && kamikaze == false)
+            {
+                transform.position = Vector3.Lerp(transform.position, lerpPos, (Time.time * 2f) * Time.deltaTime);
+                EnemyAttack(attackPattern);
+            }
 
-        if (gameObject.tag == "StartingEnemy")
-        {
-            EnemyAttack(attackPattern);
-        }
+            if (gameObject.tag == "StartingEnemy")
+            {
+                EnemyAttack(attackPattern);
+            }
 
-        if (kamikaze)
-        {
-            transform.Translate(Vector2.down * (4f * Time.deltaTime));
-        }
-        //Animation
-        if (animTimer <= 0)
-        {
-            BlinkAnimation();
+            if (kamikaze)
+            {
+                transform.Translate(Vector2.down * (4f * Time.deltaTime));
+            }
+            //Animation
+            if (animTimer <= 0)
+            {
+                BlinkAnimation();
+            }
         }
         
     }

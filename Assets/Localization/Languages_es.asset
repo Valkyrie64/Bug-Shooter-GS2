@@ -118,6 +118,14 @@ MonoBehaviour:
     m_Localized: Titulo
     m_Metadata:
       m_Items: []
+  - m_Id: 3378919481933824
+    m_Localized: Despejada
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3439789645889536
+    m_Localized: Mejor-Resultado
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

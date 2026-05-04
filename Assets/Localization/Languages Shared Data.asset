@@ -115,6 +115,14 @@ MonoBehaviour:
     m_Key: Title
     m_Metadata:
       m_Items: []
+  - m_Id: 3378919481933824
+    m_Key: Clear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3439789645889536
+    m_Key: Hi-Score
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -53,24 +53,6 @@ public class TimerManager : MonoBehaviour
                 //timerText.color = Color.red;
                 enabled = false;
             }
-
-            //Ends level when time runs out
-            if(currentTime <= 0)
-            {
-                currentTime = 0;
-                if (current.name == "Level_1")
-                {
-                    SceneManager.LoadScene(current.buildIndex - 1);
-                }
-                if (current.name == "Level_2")
-                {
-                    SceneManager.LoadScene(current.buildIndex - 3);
-                }
-                if (current.name == "Boss_forReal")
-                {
-                    SceneManager.LoadScene(current.buildIndex - 5);
-                }
-            }
         }
     }
 

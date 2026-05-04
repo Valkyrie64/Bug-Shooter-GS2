@@ -23,10 +23,12 @@ public class CursorScript : MonoBehaviour
         if (currentUIObject.name == "TitleAnt")
         {
             spriteRenderer.sprite = cursorSprites[1];
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, -65);
             offset = 2f;
         }
         else
         {
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, -125);
             spriteRenderer.sprite = cursorSprites[0];
             if (gameObject.name == "StartScreenCursor")
             {

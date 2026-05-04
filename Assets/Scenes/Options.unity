@@ -484,7 +484,7 @@ RectTransform:
   m_GameObject: {fileID: 144150959}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 500.0002, y: 500.0002, z: 1.0002129}
+  m_LocalScale: {x: 25, y: 25, z: 1.0002129}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 423316356}
@@ -492,7 +492,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.1, y: 0.1}
+  m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &144150961
 MonoBehaviour:
@@ -508,8 +508,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorScript
   eventSystem: {fileID: 1185882284}
   cursorSprites:
-  - {fileID: -6471263561850614486, guid: 853c894acb7ae11478ccdccf3ebfa193, type: 3}
-  - {fileID: -4419343032618942976, guid: 6d041084aeff13d4282b2339ae7d51eb, type: 3}
+  - {fileID: -505589148643588802, guid: 51151f87726df5146b6c3f2a46e86cb1, type: 3}
+  - {fileID: -1894981835343680712, guid: 0cdf99b403c22a34c819664fe140913c, type: 3}
   offset: 6
 --- !u!212 &144150962
 SpriteRenderer:
@@ -560,7 +560,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -6471263561850614486, guid: 853c894acb7ae11478ccdccf3ebfa193, type: 3}
+  m_Sprite: {fileID: -505589148643588802, guid: 51151f87726df5146b6c3f2a46e86cb1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

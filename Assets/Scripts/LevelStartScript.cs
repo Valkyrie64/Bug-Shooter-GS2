@@ -7,20 +7,29 @@ using UnityEngine.SceneManagement;
 public class LevelStartScript : MonoBehaviour
 {
     [SerializeField] GameObject player;
+    private Rigidbody2D playerRb;
     [SerializeField] GameObject[] enemies;
     [SerializeField] GameObject levelText;
+    [SerializeField] GameObject clearText;
     private Vector2 playerVelocity = new(0, 2);
     private Vector2 enemyVelocity = new (0, -2);
     public static bool levelStarted;
     [SerializeField] private GameObject playerBoundries;
     [SerializeField] private GameObject enemyFactory;
     private string currentScene;
+    private TimerManager timerScript;
+    private ScoringScript scoringScript;
 
     void Awake()
     {
         levelStarted = false;
         enemies = GameObject.FindGameObjectsWithTag("StartingEnemy");
         currentScene = SceneManager.GetActiveScene().name;
+        GameObject timerGO = GameObject.Find("Timer");
+        timerScript = timerGO.GetComponent<TimerManager>();
+        scoringScript = GameObject.Find("ScoringGO").GetComponent<ScoringScript>();
+        playerRb = player.GetComponent<Rigidbody2D>();
+        
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,9 +54,13 @@ public class LevelStartScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        if (timerScript.currentTime <= 0f)
+        {
+            SaveScoreData();
+            StartCoroutine(WinTransition());
+        }
     }
 
     IEnumerator EnemyTransition(float animTime)
@@ -83,5 +96,76 @@ public class LevelStartScript : MonoBehaviour
         playerBoundries.SetActive(true);
         enemyFactory.SetActive(true);
 
+    }
+
+    void SaveScoreData()
+    {
+        float currentScore = scoringScript.scoreNumber;
+        switch (currentScene)
+        {
+            case "W1Level-1":
+                if (PlayerPrefs.GetFloat("W1L1-Score") < currentScore)
+                {
+                    PlayerPrefs.SetFloat("W1L1-Score", currentScore);
+                }
+                break;
+            case "W1Level-2":
+                if (PlayerPrefs.GetFloat("W1L2-Score") < currentScore)
+                {
+                    PlayerPrefs.SetFloat("W1L2-Score", currentScore);
+                }
+                break;
+            case "W1Level-3":
+                if (PlayerPrefs.GetFloat("W1L3-Score") < currentScore)
+                {
+                    PlayerPrefs.SetFloat("W1L3-Score", currentScore);
+                }
+                break;
+            case "W2Level-1":
+                if (PlayerPrefs.GetFloat("W2L1-Score") < currentScore)
+                {
+                    PlayerPrefs.SetFloat("W2L1-Score", currentScore);
+                }
+                break;
+            case "W2Level-2":
+                if (PlayerPrefs.GetFloat("W2L2-Score") < currentScore)
+                {
+                    PlayerPrefs.SetFloat("W2L2-Score", currentScore);
+                }
+                break;
+            case "W2Level-3":
+                if (PlayerPrefs.GetFloat("W2L3-Score") < currentScore)
+                {
+                    PlayerPrefs.SetFloat("W2L3-Score", currentScore);
+                }
+                break;
+            case "W3Level-1":
+                if (PlayerPrefs.GetFloat("W3L1-Score") < currentScore)
+                {
+                    PlayerPrefs.SetFloat("W3L1-Score", currentScore);
+                }
+                break;
+            case "W3Level-2":
+                if (PlayerPrefs.GetFloat("W3L2-Score") < currentScore)
+                {
+                    PlayerPrefs.SetFloat("W3L2-Score", currentScore);
+                }
+                break;
+            case "W3Level-3":
+                if (PlayerPrefs.GetFloat("W3L3-Score") < currentScore)
+                {
+                    PlayerPrefs.SetFloat("W3L3-Score", currentScore);
+                }
+                break;
+        }
+    }
+
+    IEnumerator WinTransition()
+    {
+        playerRb.linearVelocity = Vector2.zero;
+        levelStarted = false;
+        clearText.SetActive(true);
+        yield return new WaitForSeconds(1.6f);
+        SceneManager.LoadScene(sceneBuildIndex:14);
     }
 }

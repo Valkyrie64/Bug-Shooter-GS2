@@ -118,6 +118,14 @@ MonoBehaviour:
     m_Localized: Title
     m_Metadata:
       m_Items: []
+  - m_Id: 3378919481933824
+    m_Localized: Cleared
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3439789645889536
+    m_Localized: Hi-Score
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

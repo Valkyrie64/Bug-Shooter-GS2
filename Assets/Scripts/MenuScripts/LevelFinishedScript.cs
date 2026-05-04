@@ -10,12 +10,6 @@ public class LevelFinishedScript : MonoBehaviour
         lastSceneIndex = PlayerPrefs.GetInt("LastLevelScene");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log(lastSceneIndex);
-    }
-
     public void RetryClicked()
     {
         AudioManager.PlaySFX(SoundType.UIConfirm);
