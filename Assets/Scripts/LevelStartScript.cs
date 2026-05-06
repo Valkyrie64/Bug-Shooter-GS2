@@ -38,7 +38,7 @@ public class LevelStartScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (currentScene == "W1Level-1" || currentScene == "W2Level-1" || currentScene == "W3Level-1")
+        if (currentScene == "W1Level-1" || currentScene == "W2Level-1" || currentScene == "W3Level-1" || currentScene == "TheBestTestLevel")
         {
             AudioManager.PlayMusic(MusicType.Level1Music);
             StartCoroutine(EnemyTransition(1f));

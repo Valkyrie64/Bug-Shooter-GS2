@@ -31,7 +31,7 @@ public class BulletScript : MonoBehaviour
     {
         if (other.CompareTag("FlyingEnemy") || other.CompareTag("StoppedEnemy") || other.CompareTag("StartingEnemy"))
         {
-            other.gameObject.SetActive(false);
+            //other.gameObject.SetActive(false);
             Destroy(gameObject);
         }
     }

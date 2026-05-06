@@ -56,6 +56,8 @@ public class EnemyScript : MonoBehaviour
         kamikaze = false;
         var scoreGO = GameObject.Find("ScoringGO");
         scoreScript = scoreGO.GetComponent<ScoringScript>();
+        waveScript = GameObject.Find("EnemyFactory").GetComponent<EnemyWaveCreator>();
+        splineScript = scoreGO.GetComponent<SplineAnimate>();
         timerScript = GameObject.Find("Timer").GetComponent<TimerManager>();
         if (gameObject.tag != "StartingEnemy")
         {
@@ -167,6 +169,18 @@ public class EnemyScript : MonoBehaviour
             bullet.tag = "EnemyBullet";
             StartCoroutine(KamikazeAttack());
         }
+
+        if (collision.CompareTag("PlayerBullet"))
+        {
+            StartCoroutine(EnemyDeath());
+        }
+    }
+
+    IEnumerator EnemyDeath()
+    {
+        animator.SetBool("Killed", true);
+        yield return new WaitForSeconds(0.5f);
+        gameObject.SetActive(false);
     }
 
     void EnemyAttack(AttackType attackType)
