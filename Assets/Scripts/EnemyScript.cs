@@ -33,6 +33,8 @@ public class EnemyScript : MonoBehaviour
 
     private TimerManager timerScript;
     
+    private LevelStartScript levelStartScript;
+    
     
 
     public enum AttackType
@@ -62,6 +64,7 @@ public class EnemyScript : MonoBehaviour
             splineScript = this.GetComponent<SplineAnimate>();
         }
         var posGO = GameObject.Find("EnemyEndPositions");
+        levelStartScript = GameObject.Find("ManagerGO").GetComponent<LevelStartScript>();
         
         animTimer = Random.Range(2, 8);
         rand = Random.Range(2, 5);
@@ -69,6 +72,7 @@ public class EnemyScript : MonoBehaviour
 
     private void Start()
     {
+        levelStartScript.savedEnemiesList.Add(gameObject);
         if (gameObject.tag == "StartingEnemy")
         {
             following = true;
@@ -134,6 +138,7 @@ public class EnemyScript : MonoBehaviour
 
     private void OnDisable()
     {
+        levelStartScript.savedEnemiesList.Remove(gameObject);
         scoreScript.ScoreUpdate(scoreValue);
         Destroy(gameObject);
     }

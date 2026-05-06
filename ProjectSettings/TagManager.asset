@@ -18,6 +18,9 @@ TagManager:
   - LanguageText
   - LanguageButton
   - OptionsButton
+  - BossWalls
+  - BossEnemy
+  - QueenAnt
   layers:
   - Default
   - TransparentFX

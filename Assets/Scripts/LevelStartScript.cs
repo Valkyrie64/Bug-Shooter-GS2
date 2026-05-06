@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 using TMPro;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +11,7 @@ public class LevelStartScript : MonoBehaviour
     [SerializeField] GameObject player;
     private Rigidbody2D playerRb;
     [SerializeField] GameObject[] enemies;
+    [SerializeField] private GameObject boss;
     [SerializeField] GameObject levelText;
     [SerializeField] GameObject clearText;
     private Vector2 playerVelocity = new(0, 2);
@@ -19,6 +22,7 @@ public class LevelStartScript : MonoBehaviour
     private string currentScene;
     private TimerManager timerScript;
     private ScoringScript scoringScript;
+    public List<GameObject> savedEnemiesList;
 
     void Awake()
     {
@@ -34,33 +38,55 @@ public class LevelStartScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (currentScene == "W1Level-1" || currentScene == "W1Level-2" || currentScene == "W1Level-3")
+        if (currentScene == "W1Level-1" || currentScene == "W2Level-1" || currentScene == "W3Level-1")
         {
             AudioManager.PlayMusic(MusicType.Level1Music);
+            StartCoroutine(EnemyTransition(1f));
+            //StartCoroutine(JesterTransition());
+            StartCoroutine(PlayerTransition(1f));
         }
 
-        if (currentScene == "W2Level-1" || currentScene == "W2Level-2" || currentScene == "W2Level-3")
+        if (currentScene == "W1Level-2" || currentScene == "W2Level-2" || currentScene == "W3Level-2")
         {
             AudioManager.PlayMusic(MusicType.Level2Music);
+            StartCoroutine(EnemyTransition(1f));
+            StartCoroutine(PlayerTransition(1f));
         }
 
-        if (currentScene == "W3Level-1" || currentScene == "W3Level-2" || currentScene == "W3Level-3")
+        if (currentScene == "W1Level-3" || currentScene == "W2Level-3" || currentScene == "W3Level-3")
         {
             AudioManager.PlayMusic(MusicType.BossMusic);
+            StartCoroutine(JesterTransition());
+            //StartCoroutine(PlayerTransition(1f));
+            
         }
         
-        StartCoroutine(EnemyTransition(1f));
-        StartCoroutine(PlayerTransition(1f));
+        
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        if (timerScript.currentTime <= 0f)
+        if (timerScript.currentTime <= 0f && savedEnemiesList.Count <= 0)
         {
-            SaveScoreData();
-            StartCoroutine(WinTransition());
+            GameWon();
         }
+
+        if (timerScript.currentTime <= 0f && savedEnemiesList.Count > 0)
+        {
+            GameLost();
+        }
+    }
+
+    public void GameLost()
+    {
+        StartCoroutine(LoseTransition());
+    }
+
+    public void GameWon()
+    {
+        SaveScoreData();
+        StartCoroutine(WinTransition());
     }
 
     IEnumerator EnemyTransition(float animTime)
@@ -75,18 +101,16 @@ public class LevelStartScript : MonoBehaviour
             }
             timer += Time.deltaTime;
             yield return null;
-            
         }
     }
 
     IEnumerator PlayerTransition(float animTime)
     {
-        
         float timer = 0f;
         while (timer < animTime)
         {
             player.transform.position = Vector2.SmoothDamp(player.transform.position,
-                new Vector2(player.transform.position.x, player.transform.position.y + 2f), ref playerVelocity, 1f);
+                new Vector2(player.transform.position.x, player.transform.position.y + 3f), ref playerVelocity, 1f);
             timer += Time.deltaTime;
             yield return null;
         }
@@ -95,7 +119,43 @@ public class LevelStartScript : MonoBehaviour
         levelStarted = true;
         playerBoundries.SetActive(true);
         enemyFactory.SetActive(true);
+    }
 
+    IEnumerator JesterTransition()
+    {
+        var antQueen = GameObject.FindGameObjectWithTag("QueenAnt");
+        var queenAnimator = antQueen.GetComponent<Animator>();
+        var jesterAnt = GameObject.FindGameObjectWithTag("BossEnemy");
+        float timer = 0f;
+        while (timer < 1f)
+        {
+            antQueen.transform.position = Vector2.SmoothDamp(antQueen.transform.position,
+                new Vector2(antQueen.transform.position.x, antQueen.transform.position.y - 3f), ref enemyVelocity, 1f);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        yield return new WaitForSeconds(1f);
+        queenAnimator.SetBool("Summon", true);
+        yield return new WaitForSeconds(0.5f);
+        while (timer < 3.5f)
+        {
+            antQueen.transform.position = Vector2.SmoothDamp(antQueen.transform.position,
+                new Vector2(antQueen.transform.position.x, antQueen.transform.position.y + 2f), ref enemyVelocity, 1f);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.1f);
+        while (timer < 5.1f)
+        {
+            jesterAnt.transform.position = Vector2.SmoothDamp(jesterAnt.transform.position,
+                new Vector2(jesterAnt.transform.position.x, jesterAnt.transform.position.y - 2f), ref enemyVelocity, 1f);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        levelText.SetActive(false);
+        levelStarted = true;
+        playerBoundries.SetActive(true);
+        enemyFactory.SetActive(true);
     }
 
     void SaveScoreData()
@@ -167,5 +227,14 @@ public class LevelStartScript : MonoBehaviour
         clearText.SetActive(true);
         yield return new WaitForSeconds(1.6f);
         SceneManager.LoadScene(sceneBuildIndex:14);
+    }
+
+    IEnumerator LoseTransition()
+    {
+        playerRb.linearVelocity = Vector2.zero;
+        levelStarted = false;
+        clearText.SetActive(true);
+        yield return new WaitForSeconds(1.6f);
+        SceneManager.LoadScene(sceneBuildIndex:13);
     }
 }

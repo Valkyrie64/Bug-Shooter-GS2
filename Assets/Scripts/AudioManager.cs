@@ -20,6 +20,7 @@ public enum SoundType
     RankDown,
     UISelect,
     UIConfirm,
+    Damaged
 }
 
 public enum MusicType
