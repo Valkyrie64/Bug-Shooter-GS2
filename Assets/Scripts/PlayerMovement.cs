@@ -198,7 +198,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("RightWing", false);
         }
         
-        if (animateTimer > 1.1f)
+        if (animateTimer > 1.4f)
         {
             if (health > 0)
             {
@@ -218,17 +218,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("EnemyBullet") || other.CompareTag("TrackingBullet"))
         {
+            LifeLost();
             scoreScript.timer -= 5f;
             Destroy(other.gameObject);
-            LifeLost();
         }
     }
 
     void LifeLost()
     {
+        playerColl.enabled = false;
         animateTimer = 0;
         health--;
-        playerColl.enabled = false;
         livesImages[health].SetActive(false);
         inputActions.Disable();
         animator.SetBool("Hit", true);

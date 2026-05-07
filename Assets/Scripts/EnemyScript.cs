@@ -153,16 +153,16 @@ public class EnemyScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EnemySpace"))
+        if (collision.CompareTag("EnemySpace") && gameObject.tag != "StartingEnemy")
         {
             gameObject.tag = "StoppedEnemy";
             rand = Random.Range(1.5f, 2.5f);
             attackTimer = 0;
-            splineScript.Container = null;
             following = false;
+            splineScript.Container = null;
         }
 
-        if (attackPattern == AttackType.Kamikaze && collision.CompareTag("ExplosionSpace"))
+        if (attackPattern == AttackType.Kamikaze && collision.CompareTag("ExplosionSpace") && kamikaze == true)
         {
             bullet.tag = "EnemyBullet";
             StartCoroutine(KamikazeAttack());

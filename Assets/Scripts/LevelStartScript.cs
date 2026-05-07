@@ -17,6 +17,7 @@ public class LevelStartScript : MonoBehaviour
     private Vector2 playerVelocity = new(0, 2);
     private Vector2 enemyVelocity = new (0, -2);
     public static bool levelStarted;
+    //LevelStartScript.levelStarted
     [SerializeField] private GameObject playerBoundries;
     [SerializeField] private GameObject enemyFactory;
     private string currentScene;
@@ -33,12 +34,13 @@ public class LevelStartScript : MonoBehaviour
         timerScript = timerGO.GetComponent<TimerManager>();
         scoringScript = GameObject.Find("ScoringGO").GetComponent<ScoringScript>();
         playerRb = player.GetComponent<Rigidbody2D>();
+
         
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (currentScene == "W1Level-1" || currentScene == "W2Level-1" || currentScene == "W3Level-1")
+        if (currentScene == "W1Level-1" || currentScene == "W2Level-1" || currentScene == "W3Level-1" || currentScene == "TheBestTestLevel"  || currentScene == "Level - 01"  || currentScene == "Level - 02"  || currentScene == "W2 - Level - 01"  || currentScene == "W3 - Level - 01")
         {
             AudioManager.PlayMusic(MusicType.Level1Music);
             StartCoroutine(EnemyTransition(1f));
