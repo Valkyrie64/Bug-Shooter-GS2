@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.17, y: 2.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -178,8 +178,11 @@ MonoBehaviour:
   - {fileID: 644244602692536722, guid: 5690ba18e63722d4b994c81f1bb41ce3, type: 3}
   - {fileID: 644244602692536722, guid: cb2975d949a48ec4288f1e5521d32d48, type: 3}
   scoreScript: {fileID: 0}
-  scoreValue: 400
+  scoreValue: 500
   animator: {fileID: 1817256671225862097}
+  animateTimer: 0
+  attackTimer: 0
+  randTime: 0
 --- !u!95 &1817256671225862097
 Animator:
   serializedVersion: 7

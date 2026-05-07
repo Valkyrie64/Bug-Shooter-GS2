@@ -138,6 +138,15 @@ public class EnemyScript : MonoBehaviour
 
     private void OnDisable()
     {
+        /*if (gameObject.name.Contains("BlackTech"))
+        {
+            GameObject.Find("BlackRobo(Clone)").SetActive(false);
+        }
+
+        if (gameObject.name.Contains("RedTech"))
+        {
+            
+        }*/
         levelStartScript.savedEnemiesList.Remove(gameObject);
         scoreScript.ScoreUpdate(scoreValue);
         Destroy(gameObject);
@@ -229,6 +238,7 @@ public class EnemyScript : MonoBehaviour
                 {
                     rand = Random.Range(2.5f, 3f);
                     attackTimer = 0;
+                    bullet.tag = "EnemyBullet";
                     AudioManager.PlaySFX(SoundType.RoundShot);
                     StartCoroutine(RoundShot());
                 }
@@ -238,6 +248,7 @@ public class EnemyScript : MonoBehaviour
                 {
                     rand = Random.Range(2.5f, 3f);
                     attackTimer = 0;
+                    bullet.tag = "TrackingBullet";
                     AudioManager.PlaySFX(SoundType.WallShot);
                     StartCoroutine(QuadShot());
                 }
@@ -247,6 +258,7 @@ public class EnemyScript : MonoBehaviour
                 {
                     rand = Random.Range(2.5f, 3f);
                     attackTimer = 0;
+                    bullet.tag = "EnemyBullet";
                     AudioManager.PlaySFX(SoundType.WallShot);
                     StartCoroutine(WallShot());
                 }
@@ -255,7 +267,7 @@ public class EnemyScript : MonoBehaviour
                 if ((gameObject.tag == "StoppedEnemy" || gameObject.tag == "StartingEnemy") && attackTimer >= rand && created == false)
                 {
                     rand = Random.Range(2.5f, 3f);
-                    Instantiate(technicianRobot, new Vector2(transform.position.x, transform.position.y - 2f), transform.rotation);
+                    Instantiate(technicianRobot, new Vector2(transform.position.x, transform.position.y - 2f), transform.rotation, gameObject.transform);
                     AudioManager.PlaySFX(SoundType.CreateShot);
                     created = true;
                 }

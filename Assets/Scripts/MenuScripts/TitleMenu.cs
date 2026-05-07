@@ -93,7 +93,7 @@ public class TitleMenu : MonoBehaviour
 
         var level3Lock = level3Button.GetComponentInChildren<Image>();
         var level2Lock = level2Button.GetComponentInChildren<Image>();
-        if (PlayerPrefs.GetInt("W1L3") == 1)
+        if (PlayerPrefs.GetInt("W1L2") == 1 && PlayerPrefs.GetInt("W1L3") == 1)
         {
             level1Button.interactable = true;
             level2Button.interactable = true;
@@ -101,10 +101,11 @@ public class TitleMenu : MonoBehaviour
             backSelection = GameObject.Find("W1Level-3").GetComponent<Selectable>();
             backNavigation.selectOnUp = backSelection;
             backButton.navigation = backNavigation;
+            level2Lock.gameObject.SetActive(false);
             level3Lock.gameObject.SetActive(false);
         }
 
-        if (PlayerPrefs.GetInt("W1L2") == 1)
+        if (PlayerPrefs.GetInt("W1L2") == 1 && PlayerPrefs.GetInt("W1L3") == 0)
         {
             level1Button.interactable = true;
             level2Button.interactable = true;
@@ -128,13 +129,7 @@ public class TitleMenu : MonoBehaviour
 
     public void VersusClicked()
     {
-        AudioManager.PlaySFX(SoundType.UIConfirm);
-        startingOptions.SetActive(false);
-        levelSelection.SetActive(true);
-        world2.SetActive(false);
-        world3.SetActive(false);
-        level2 = GameObject.Find("Level-2").GetComponent<Button>();
-        level3 = GameObject.Find("Level-3").GetComponent<Button>();
+        
     }
 
     public void BackClicked()
@@ -172,7 +167,7 @@ public class TitleMenu : MonoBehaviour
         
         var level3Lock = level3Button.GetComponentInChildren<Image>();
         var level2Lock = level2Button.GetComponentInChildren<Image>();
-        if (PlayerPrefs.GetInt("W1L3") == 1)
+        if (PlayerPrefs.GetInt("W1L2") == 1 && PlayerPrefs.GetInt("W1L3") == 1)
         {
             level1Button.interactable = true;
             level2Button.interactable = true;
@@ -183,7 +178,7 @@ public class TitleMenu : MonoBehaviour
             level3Lock.gameObject.SetActive(false);
         }
 
-        if (PlayerPrefs.GetInt("W1L2") == 1)
+        if (PlayerPrefs.GetInt("W1L2") == 1 && PlayerPrefs.GetInt("W1L3") == 0)
         {
             level1Button.interactable = true;
             level2Button.interactable = true;
@@ -211,8 +206,8 @@ public class TitleMenu : MonoBehaviour
         world2.SetActive(true);
         world3.SetActive(false);
         world1.SetActive(false);
-        level2 = GameObject.Find("W2Level-2").GetComponent<Button>();
-        level3 = GameObject.Find("W2Level-3").GetComponent<Button>();
+        //level2 = GameObject.Find("W2Level-2").GetComponent<Button>();
+        //level3 = GameObject.Find("W2Level-3").GetComponent<Button>();
         bugImage.sprite = sprites[1];
         nextSelection = GameObject.Find("W2Level-1").GetComponent<Selectable>();
         world1Navigation.selectOnDown = nextSelection;
@@ -226,8 +221,8 @@ public class TitleMenu : MonoBehaviour
         var level2Button = selectableButtons[1].gameObject.GetComponent<Button>();
         var level1Button = selectableButtons[0].gameObject.GetComponent<Button>();
         
-        var level3Lock = level3Button.GetComponentInChildren<Image>();
-        var level2Lock = level2Button.GetComponentInChildren<Image>();
+        
+        
         if (PlayerPrefs.GetInt("W2L3") == 1)
         { 
             level1Button.interactable = true;
@@ -236,6 +231,7 @@ public class TitleMenu : MonoBehaviour
             backSelection = GameObject.Find("W2Level-3").GetComponent<Selectable>();
             backNavigation.selectOnUp = backSelection;
             backButton.navigation = backNavigation;
+            var level3Lock = level3Button.GetComponentInChildren<Image>();
             level3Lock.gameObject.SetActive(false);
         }
 
@@ -247,6 +243,7 @@ public class TitleMenu : MonoBehaviour
             backSelection = GameObject.Find("W2Level-2").GetComponent<Selectable>();
             backNavigation.selectOnUp = backSelection;
             backButton.navigation = backNavigation;
+            var level2Lock = level2Button.GetComponentInChildren<Image>();
             level2Lock.gameObject.SetActive(false);
         }
 
@@ -360,50 +357,50 @@ public class TitleMenu : MonoBehaviour
         SceneManager.LoadScene(sceneBuildIndex:5);
     }
     
-    public void World2Level3Clicked()
+    /*public void World2Level3Clicked()
+    {
+        PlayerPrefs.SetInt("LastLevelScene", 6);
+        AudioManager.PlaySFX(SoundType.UIConfirm);
+        SceneManager.LoadScene(sceneBuildIndex:6);
+    }*/
+    
+    public void World3Level1Clicked()
     {
         PlayerPrefs.SetInt("LastLevelScene", 6);
         AudioManager.PlaySFX(SoundType.UIConfirm);
         SceneManager.LoadScene(sceneBuildIndex:6);
     }
     
-    public void World3Level1Clicked()
-    {
-        PlayerPrefs.SetInt("LastLevelScene", 7);
-        AudioManager.PlaySFX(SoundType.UIConfirm);
-        SceneManager.LoadScene(sceneBuildIndex:7);
-    }
-    
-    public void World3Level2Clicked()
+    /*public void World3Level2Clicked()
     {
         PlayerPrefs.SetInt("LastLevelScene", 8);
         AudioManager.PlaySFX(SoundType.UIConfirm);
         SceneManager.LoadScene(sceneBuildIndex:8);
-    }
+    }*/
     
-    public void World3Level3Clicked()
+    /*public void World3Level3Clicked()
     {
         PlayerPrefs.SetInt("LastLevelScene", 9);
         AudioManager.PlaySFX(SoundType.UIConfirm);
         SceneManager.LoadScene(sceneBuildIndex:9);
-    }
+    }*/
     
     public void HTPClicked()
     {
         AudioManager.PlaySFX(SoundType.UIConfirm);
-        SceneManager.LoadScene(sceneBuildIndex:12);
+        SceneManager.LoadScene(sceneBuildIndex:8);
     }
 
     public void OptionsClicked()
     {
         AudioManager.PlaySFX(SoundType.UIConfirm);
-        SceneManager.LoadScene(sceneBuildIndex:10);
+        SceneManager.LoadScene(sceneBuildIndex:9);
     }
 
     public void CreditsClicked()
     {
         AudioManager.PlaySFX(SoundType.UIConfirm);
-        SceneManager.LoadScene(sceneBuildIndex:11);
+        SceneManager.LoadScene(sceneBuildIndex:10);
     }
 
     public void ExitClicked()

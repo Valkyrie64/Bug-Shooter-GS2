@@ -2,11 +2,13 @@ using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Splines;
+using UnityEngine.SceneManagement;
 
 public class EnemyWaveCreator : MonoBehaviour
 {
     public TimerManager timerScript;
     private float timerNO;
+    private string currentScene;
     
     public List<GameObject> enemyList;
     public List<SplineContainer> paths;
@@ -17,7 +19,36 @@ public class EnemyWaveCreator : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(Stage6());
+        
+    }
+
+    public void CreateEnemyWaves()
+    {
+        currentScene = SceneManager.GetActiveScene().name;
+        if (LevelStartScript.levelStarted)
+        {
+            switch (currentScene)
+            {
+                case "W1 - Level - 01":
+                    StartCoroutine(Stage1());
+                    break;
+                case "W1 - Level - 02":
+                    StartCoroutine(Stage2());
+                    break;
+                case "W1 - Level - 03":
+                    //StartCoroutine(Stage3());
+                    break;
+                case "W2 - Level - 01":
+                    StartCoroutine(Stage4());
+                    break;
+                case "W2 - Level - 02":
+                    StartCoroutine(Stage5());
+                    break;
+                case "W3 - Level - 01":
+                    StartCoroutine(Stage6());
+                    break;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -171,23 +202,23 @@ public class EnemyWaveCreator : MonoBehaviour
      IEnumerator Stage6()
     {
        for (int i = 0; i < 2; i++)
-        {
-            Instantiate(enemyList[7], new Vector2(0, -5), Quaternion.identity);
-        }
-        LinkToPath(0);
-        yield return new WaitForSeconds(3f);
-        for (int i = 0; i < 3; i++)
-        {
-            Instantiate(enemyList[4], new Vector2(0, -5), Quaternion.identity);
-        }
-        LinkToPath(1);
-        yield return new WaitForSeconds(3f);
-        for (int i = 0; i < 1; i++)
-        {
-            Instantiate(enemyList[5], new Vector2(0, -5), Quaternion.identity);
-        }
-        LinkToPath(2);
-        yield return new WaitForSeconds(3f);
-        yield return null;
+       {
+           Instantiate(enemyList[7], new Vector2(0, -5), Quaternion.identity);
+       }
+       LinkToPath(0);
+       yield return new WaitForSeconds(3f);
+       for (int i = 0; i < 3; i++)
+       {
+           Instantiate(enemyList[4], new Vector2(0, -5), Quaternion.identity);
+       }
+       LinkToPath(1);
+       yield return new WaitForSeconds(3f);
+       for (int i = 0; i < 1; i++)
+       {
+           Instantiate(enemyList[5], new Vector2(0, -5), Quaternion.identity);
+       }
+       LinkToPath(2);
+       yield return new WaitForSeconds(3f); 
+       yield return null;
     }
 }

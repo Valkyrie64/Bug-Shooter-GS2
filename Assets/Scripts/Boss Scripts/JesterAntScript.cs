@@ -5,7 +5,7 @@ public class JesterAntScript : MonoBehaviour
 {
     [SerializeField] private GameObject[] bullet;
     private int dirSpeed = 5;
-    private int bossHealth = 5;
+    private int bossHealth = 15;
     private LevelStartScript levelStartScript;
     public ScoringScript scoreScript;
     [SerializeField] private float scoreValue;
@@ -19,7 +19,7 @@ public class JesterAntScript : MonoBehaviour
     {
         levelStartScript = GameObject.Find("ManagerGO").GetComponent<LevelStartScript>();
         levelStartScript.savedEnemiesList.Add(gameObject);
-        randTime = Random.Range(1.2f, 2f);
+        randTime = Random.Range(1.2f, 1.5f);
     }
 
     // Update is called once per frame
@@ -37,7 +37,7 @@ public class JesterAntScript : MonoBehaviour
             
             if (attackTimer >= randTime)
             {
-                randTime = Random.Range(1.2f, 2f);
+                randTime = Random.Range(1.2f, 1.5f);
                 randBullet = Random.Range(0, 5);
                 attackTimer = 0;
                 Instantiate(bullet[randBullet], transform.position, transform.rotation);
@@ -68,6 +68,7 @@ public class JesterAntScript : MonoBehaviour
             animateTimer = 0;
             animator.SetBool("Hit", true);
             bossHealth -= 1;
+            scoreScript.ScoreUpdate(5f);
         }
     }
 

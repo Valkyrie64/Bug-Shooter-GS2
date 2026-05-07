@@ -1,8 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
-using TMPro;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,6 +21,7 @@ public class LevelStartScript : MonoBehaviour
     private TimerManager timerScript;
     private ScoringScript scoringScript;
     public List<GameObject> savedEnemiesList;
+    private EnemyWaveCreator waveCreator;
 
     void Awake()
     {
@@ -34,28 +32,27 @@ public class LevelStartScript : MonoBehaviour
         timerScript = timerGO.GetComponent<TimerManager>();
         scoringScript = GameObject.Find("ScoringGO").GetComponent<ScoringScript>();
         playerRb = player.GetComponent<Rigidbody2D>();
-
-        
+        waveCreator = GameObject.Find("EnemyFactory").GetComponent<EnemyWaveCreator>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (currentScene == "W1Level-1" || currentScene == "W2Level-1" || currentScene == "W3Level-1" || currentScene == "TheBestTestLevel"  || currentScene == "Level - 01"  || currentScene == "Level - 02"  || currentScene == "W2 - Level - 01"  || currentScene == "W3 - Level - 01")
+        if (currentScene == "TheBestTestLevel"  || currentScene == "W1 - Level - 01"  || currentScene == "W2 - Level - 01"  || currentScene == "W3 - Level - 01")
         {
             AudioManager.PlayMusic(MusicType.Level1Music);
             StartCoroutine(EnemyTransition(1f));
-            //StartCoroutine(JesterTransition());
             StartCoroutine(PlayerTransition(1f));
         }
 
-        if (currentScene == "W1Level-2" || currentScene == "W2Level-2" || currentScene == "W3Level-2")
+        if (currentScene == "W1 - Level - 02" || currentScene == "W2 - Level - 02")
         {
+            //AudioManager.StopMusic();
             AudioManager.PlayMusic(MusicType.Level2Music);
             StartCoroutine(EnemyTransition(1f));
             StartCoroutine(PlayerTransition(1f));
         }
 
-        if (currentScene == "W1Level-3" || currentScene == "W2Level-3" || currentScene == "W3Level-3")
+        if (currentScene == "W1 - Level - 03")
         {
             AudioManager.PlayMusic(MusicType.BossMusic);
             StartCoroutine(JesterTransition());
@@ -120,7 +117,7 @@ public class LevelStartScript : MonoBehaviour
         levelText.SetActive(false);
         levelStarted = true;
         playerBoundries.SetActive(true);
-        enemyFactory.SetActive(true);
+        waveCreator.CreateEnemyWaves();
     }
 
     IEnumerator JesterTransition()
@@ -157,7 +154,6 @@ public class LevelStartScript : MonoBehaviour
         levelText.SetActive(false);
         levelStarted = true;
         playerBoundries.SetActive(true);
-        enemyFactory.SetActive(true);
     }
 
     void SaveScoreData()
@@ -165,55 +161,58 @@ public class LevelStartScript : MonoBehaviour
         float currentScore = scoringScript.scoreNumber;
         switch (currentScene)
         {
-            case "W1Level-1":
+            case "W1 - Level - 01":
                 if (PlayerPrefs.GetFloat("W1L1-Score") < currentScore)
                 {
                     PlayerPrefs.SetFloat("W1L1-Score", currentScore);
                 }
+                PlayerPrefs.SetInt("W1L2", 1);
                 break;
-            case "W1Level-2":
+            case "W1 - Level - 02":
                 if (PlayerPrefs.GetFloat("W1L2-Score") < currentScore)
                 {
                     PlayerPrefs.SetFloat("W1L2-Score", currentScore);
                 }
+                PlayerPrefs.SetInt("W1L3", 1);
                 break;
-            case "W1Level-3":
+            case "W1 - Level - 03":
                 if (PlayerPrefs.GetFloat("W1L3-Score") < currentScore)
                 {
                     PlayerPrefs.SetFloat("W1L3-Score", currentScore);
                 }
                 break;
-            case "W2Level-1":
+            case "W2 - Level - 01":
                 if (PlayerPrefs.GetFloat("W2L1-Score") < currentScore)
                 {
                     PlayerPrefs.SetFloat("W2L1-Score", currentScore);
                 }
+                PlayerPrefs.SetInt("W2L2", 1);
                 break;
-            case "W2Level-2":
+            case "W2 - Level - 02":
                 if (PlayerPrefs.GetFloat("W2L2-Score") < currentScore)
                 {
                     PlayerPrefs.SetFloat("W2L2-Score", currentScore);
                 }
                 break;
-            case "W2Level-3":
+            case "W2 - Level - 03":
                 if (PlayerPrefs.GetFloat("W2L3-Score") < currentScore)
                 {
                     PlayerPrefs.SetFloat("W2L3-Score", currentScore);
                 }
                 break;
-            case "W3Level-1":
+            case "W3 - Level - 01":
                 if (PlayerPrefs.GetFloat("W3L1-Score") < currentScore)
                 {
                     PlayerPrefs.SetFloat("W3L1-Score", currentScore);
                 }
                 break;
-            case "W3Level-2":
+            case "W3 - Level - 02":
                 if (PlayerPrefs.GetFloat("W3L2-Score") < currentScore)
                 {
                     PlayerPrefs.SetFloat("W3L2-Score", currentScore);
                 }
                 break;
-            case "W3Level-3":
+            case "W3 - Level - 03":
                 if (PlayerPrefs.GetFloat("W3L3-Score") < currentScore)
                 {
                     PlayerPrefs.SetFloat("W3L3-Score", currentScore);
@@ -228,7 +227,7 @@ public class LevelStartScript : MonoBehaviour
         levelStarted = false;
         clearText.SetActive(true);
         yield return new WaitForSeconds(1.6f);
-        SceneManager.LoadScene(sceneBuildIndex:14);
+        SceneManager.LoadScene(sceneBuildIndex:12);
     }
 
     IEnumerator LoseTransition()
@@ -237,6 +236,6 @@ public class LevelStartScript : MonoBehaviour
         levelStarted = false;
         clearText.SetActive(true);
         yield return new WaitForSeconds(1.6f);
-        SceneManager.LoadScene(sceneBuildIndex:13);
+        SceneManager.LoadScene(sceneBuildIndex:11);
     }
 }

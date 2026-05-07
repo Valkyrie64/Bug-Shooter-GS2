@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
     public int health;
     public GameObject scoreGO;
     private ScoringScript scoreScript;
-    public GameObject restartButton;
 
     //animation components
     public Animator animator;
@@ -149,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
 
     void GameLose()
     {
-        SceneManager.LoadScene(sceneBuildIndex: 13);
+        SceneManager.LoadScene(sceneBuildIndex: 11);
         gameObject.SetActive(false);
     }
 
@@ -218,6 +217,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("EnemyBullet") || other.CompareTag("TrackingBullet"))
         {
+            playerColl.enabled = false;
             LifeLost();
             scoreScript.timer -= 5f;
             Destroy(other.gameObject);
@@ -226,7 +226,6 @@ public class PlayerMovement : MonoBehaviour
 
     void LifeLost()
     {
-        playerColl.enabled = false;
         animateTimer = 0;
         health--;
         livesImages[health].SetActive(false);
