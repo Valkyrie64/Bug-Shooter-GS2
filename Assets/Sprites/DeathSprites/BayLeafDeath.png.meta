@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: a3fdb3b0ec8dc8b41ad1b6bd7e995024
+guid: 1236a4b10a84ee34f8aff753c14341ed
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2258166980627186798
-    second: CatAntDeath_0
+      213: 4969034167857345755
+    second: BayLeafDeath_0
   - first:
-      213: -1357138649543724862
-    second: CatAntDeath_1
+      213: -6572485483843970442
+    second: BayLeafDeath_1
   - first:
-      213: -9079278425981533520
-    second: CatAntDeath_2
+      213: 6322126164220374149
+    second: BayLeafDeath_2
   - first:
-      213: 2547271637361675615
-    second: CatAntDeath_3
+      213: 440236223289392355
+    second: BayLeafDeath_3
   - first:
-      213: -3789050113794285227
-    second: CatAntDeath_4
+      213: 220018040114248562
+    second: BayLeafDeath_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -58,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -87,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -112,11 +112,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CatAntDeath_0
+      name: BayLeafDeath_0
       rect:
         serializedVersion: 2
         x: 17
-        y: 83
+        y: 89
         width: 26
         height: 29
       alignment: 0
@@ -127,18 +127,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 29b333c681169a0e0800000000000000
-      internalID: -2258166980627186798
+      spriteID: bd47ae3af3e85f440800000000000000
+      internalID: 4969034167857345755
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CatAntDeath_1
+      name: BayLeafDeath_1
       rect:
         serializedVersion: 2
         x: 23
-        y: 32
+        y: 38
         width: 98
         height: 77
       alignment: 0
@@ -149,18 +149,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2c03ef2b6997a2de0800000000000000
-      internalID: -1357138649543724862
+      spriteID: 67a91146647d9c4a0800000000000000
+      internalID: -6572485483843970442
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CatAntDeath_2
+      name: BayLeafDeath_2
       rect:
         serializedVersion: 2
         x: 6
-        y: 35
+        y: 41
         width: 16
         height: 14
       alignment: 0
@@ -171,18 +171,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0b2c08a206ceff180800000000000000
-      internalID: -9079278425981533520
+      spriteID: 58cee831044bcb750800000000000000
+      internalID: 6322126164220374149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CatAntDeath_3
+      name: BayLeafDeath_3
       rect:
         serializedVersion: 2
         x: 78
-        y: 20
+        y: 26
         width: 19
         height: 18
       alignment: 0
@@ -193,18 +193,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f5dce53ee0ab95320800000000000000
-      internalID: 2547271637361675615
+      spriteID: 3ec7c6a33880c1600800000000000000
+      internalID: 440236223289392355
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CatAntDeath_4
+      name: BayLeafDeath_4
       rect:
         serializedVersion: 2
         x: 51
-        y: 5
+        y: 11
         width: 15
         height: 25
       alignment: 0
@@ -215,8 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 551632b2ff69a6bc0800000000000000
-      internalID: -3789050113794285227
+      spriteID: 27bff25ed39ad0300800000000000000
+      internalID: 220018040114248562
       vertices: []
       indices: 
       edges: []
@@ -225,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -235,11 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CatAntDeath_0: -2258166980627186798
-      CatAntDeath_1: -1357138649543724862
-      CatAntDeath_2: -9079278425981533520
-      CatAntDeath_3: 2547271637361675615
-      CatAntDeath_4: -3789050113794285227
+      BayLeafDeath_0: 4969034167857345755
+      BayLeafDeath_1: -6572485483843970442
+      BayLeafDeath_2: 6322126164220374149
+      BayLeafDeath_3: 440236223289392355
+      BayLeafDeath_4: 220018040114248562
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -176,6 +176,19 @@ public class EnemyScript : MonoBehaviour
             bullet.tag = "EnemyBullet";
             StartCoroutine(KamikazeAttack());
         }
+        
+        if (collision.CompareTag("PlayerBullet") && !gameObject.name.Contains("Robo"))
+        {
+            StartCoroutine(EnemyDeath());
+        }
+    }
+    
+    IEnumerator EnemyDeath()
+    {
+        AudioManager.PlaySFX(SoundType.Damaged);
+        animator.SetBool("Killed", true);
+        yield return new WaitForSeconds(0.5f);
+        gameObject.SetActive(false);
     }
 
     void EnemyAttack(AttackType attackType)

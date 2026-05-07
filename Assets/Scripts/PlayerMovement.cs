@@ -226,6 +226,7 @@ public class PlayerMovement : MonoBehaviour
 
     void LifeLost()
     {
+        AudioManager.PlaySFX(SoundType.RankDown);
         animateTimer = 0;
         health--;
         livesImages[health].SetActive(false);

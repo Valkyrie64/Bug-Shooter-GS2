@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: a3fdb3b0ec8dc8b41ad1b6bd7e995024
+guid: f1d9f69119e25f84db34439009b5c5ca
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2258166980627186798
-    second: CatAntDeath_0
+      213: -347159177763160637
+    second: MushroomSpiderDeath_0
   - first:
-      213: -1357138649543724862
-    second: CatAntDeath_1
+      213: -4686345638083885851
+    second: MushroomSpiderDeath_1
   - first:
-      213: -9079278425981533520
-    second: CatAntDeath_2
+      213: 8328438799661229431
+    second: MushroomSpiderDeath_2
   - first:
-      213: 2547271637361675615
-    second: CatAntDeath_3
+      213: 9158366566031787201
+    second: MushroomSpiderDeath_3
   - first:
-      213: -3789050113794285227
-    second: CatAntDeath_4
+      213: 2030853444257481337
+    second: MushroomSpiderDeath_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -58,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -87,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -112,11 +112,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CatAntDeath_0
+      name: MushroomSpiderDeath_0
       rect:
         serializedVersion: 2
         x: 17
-        y: 83
+        y: 89
         width: 26
         height: 29
       alignment: 0
@@ -127,18 +127,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 29b333c681169a0e0800000000000000
-      internalID: -2258166980627186798
+      spriteID: 3cdf8e03194ae2bf0800000000000000
+      internalID: -347159177763160637
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CatAntDeath_1
+      name: MushroomSpiderDeath_1
       rect:
         serializedVersion: 2
         x: 23
-        y: 32
+        y: 38
         width: 98
         height: 77
       alignment: 0
@@ -149,18 +149,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2c03ef2b6997a2de0800000000000000
-      internalID: -1357138649543724862
+      spriteID: 5e40f43b871c6feb0800000000000000
+      internalID: -4686345638083885851
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CatAntDeath_2
+      name: MushroomSpiderDeath_2
       rect:
         serializedVersion: 2
         x: 6
-        y: 35
+        y: 41
         width: 16
         height: 14
       alignment: 0
@@ -171,18 +171,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0b2c08a206ceff180800000000000000
-      internalID: -9079278425981533520
+      spriteID: 775636b56fe849370800000000000000
+      internalID: 8328438799661229431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CatAntDeath_3
+      name: MushroomSpiderDeath_3
       rect:
         serializedVersion: 2
         x: 78
-        y: 20
+        y: 26
         width: 19
         height: 18
       alignment: 0
@@ -193,18 +193,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f5dce53ee0ab95320800000000000000
-      internalID: 2547271637361675615
+      spriteID: 1c483236edd091f70800000000000000
+      internalID: 9158366566031787201
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CatAntDeath_4
+      name: MushroomSpiderDeath_4
       rect:
         serializedVersion: 2
         x: 51
-        y: 5
+        y: 11
         width: 15
         height: 25
       alignment: 0
@@ -215,8 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 551632b2ff69a6bc0800000000000000
-      internalID: -3789050113794285227
+      spriteID: 97288d7927a0f2c10800000000000000
+      internalID: 2030853444257481337
       vertices: []
       indices: 
       edges: []
@@ -225,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -235,11 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CatAntDeath_0: -2258166980627186798
-      CatAntDeath_1: -1357138649543724862
-      CatAntDeath_2: -9079278425981533520
-      CatAntDeath_3: 2547271637361675615
-      CatAntDeath_4: -3789050113794285227
+      MushroomSpiderDeath_0: -347159177763160637
+      MushroomSpiderDeath_1: -4686345638083885851
+      MushroomSpiderDeath_2: 8328438799661229431
+      MushroomSpiderDeath_3: 9158366566031787201
+      MushroomSpiderDeath_4: 2030853444257481337
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
