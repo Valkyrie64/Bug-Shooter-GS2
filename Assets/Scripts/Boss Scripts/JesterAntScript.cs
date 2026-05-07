@@ -14,17 +14,21 @@ public class JesterAntScript : MonoBehaviour
     [SerializeField]private float attackTimer;
     [SerializeField]private float randTime;
     private int randBullet;
+    private int randAttack;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         levelStartScript = GameObject.Find("ManagerGO").GetComponent<LevelStartScript>();
         levelStartScript.savedEnemiesList.Add(gameObject);
         randTime = Random.Range(1.2f, 1.5f);
+        randAttack = Random.Range(1, 6);
+        Debug.Log(randAttack);
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(randAttack);
         if (LevelStartScript.levelStarted)
         {
             animateTimer += Time.deltaTime;
@@ -35,13 +39,26 @@ public class JesterAntScript : MonoBehaviour
                 StartCoroutine(DeathSequence());
             }
             
-            if (attackTimer >= randTime)
+            if (attackTimer >= randTime && randAttack <= 3)
             {
                 randTime = Random.Range(1.2f, 1.5f);
                 randBullet = Random.Range(0, 5);
+                randAttack = Random.Range(1, 6);
                 attackTimer = 0;
                 Instantiate(bullet[randBullet], transform.position, transform.rotation);
                 AudioManager.PlaySFX(SoundType.StraightShot);
+            }
+
+            if (attackTimer >= randTime && randAttack >= 4)
+            {
+                randTime = Random.Range(1.2f, 1.5f);
+                randBullet = Random.Range(0, 5);
+                randAttack = Random.Range(1, 6);
+                attackTimer = 0;
+                AudioManager.PlaySFX(SoundType.WaveShot);
+                Instantiate(bullet[randBullet], transform.position, Quaternion.Euler(0, 0, -10f));
+                Instantiate(bullet[randBullet], transform.position, Quaternion.Euler(0, 0, 0));
+                Instantiate(bullet[randBullet], transform.position, Quaternion.Euler(0, 0, 10f));
             }
         }
     }
